@@ -1,0 +1,2 @@
+name = getArgument();
+print(name);
