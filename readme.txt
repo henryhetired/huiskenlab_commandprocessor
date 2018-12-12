@@ -17,9 +17,11 @@ Step 2. On the analysis machine, start a macro running server
 
 Step 3. Send commands to the analysis machine
    Command structure example
-   if the macro script is test.ijm which have arguments arg1, arg2, arg3
-   send "test arg1 arg2 arg3" to the port on the analysis server
+   if the script is test.ijm which have arguments arg1, arg2, arg3
+   send "test.ijm arg1 arg2 arg3" to the port on the analysis server
    parse the arguments in the script
+
+   same goes for .py files
 
 
 Step 4. Optional (shut down analysis engine)

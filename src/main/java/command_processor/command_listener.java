@@ -39,13 +39,24 @@ class command_listener {
             @Override
             public void run(){
                 String current_command[] = command.split("\\ ");
-                Macro_Runner mr = new Macro_Runner();
                 String args ="";
                 for (int i=1;i<current_command.length;i++){
                     args+=current_command[i];
                     args+=" ";
                 }
-                mr.runMacroFile(workspace + current_command[0]+".ijm",args);
+                if (current_command[0].endsWith(".ijm")){
+                    Macro_Runner mr = new Macro_Runner();
+
+                    mr.runMacroFile(workspace + current_command[0]+".ijm",args);
+                }
+                else if (current_command[0].endsWith(".py")){
+                    String command = "python "+current_command[0]+" ";
+                    try{
+                    Process p = Runtime.getRuntime().exec(command+args);}
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
                 System.out.println("Command finished");
                 return;
             }
