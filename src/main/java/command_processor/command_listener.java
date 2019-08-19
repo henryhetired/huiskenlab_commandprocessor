@@ -5,6 +5,8 @@ import java.net.Socket;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import ij.ImageJ;
 import ij.plugin.Macro_Runner;
 class command_listener {
     private static boolean keeprunning = true;
@@ -38,16 +40,17 @@ class command_listener {
         myexecutor.execute(new Runnable(){
             @Override
             public void run(){
-                String current_command[] = command.split("\\ ");
+                String[] current_command = command.split("\\ ");
                 String args ="";
                 for (int i=1;i<current_command.length;i++){
                     args+=current_command[i];
                     args+=" ";
                 }
                 if (current_command[0].endsWith(".ijm")){
+                    ImageJ session = new ImageJ(ImageJ.NO_SHOW);
                     Macro_Runner mr = new Macro_Runner();
-
                     mr.runMacroFile(workspace + current_command[0]+".ijm",args);
+                    session.quit();
                 }
                 else if (current_command[0].endsWith(".py")){
                     String command = "python "+current_command[0]+" ";
@@ -57,6 +60,7 @@ class command_listener {
                         e.printStackTrace();
                     }
                 }
+                System.gc();
                 System.out.println("Command finished");
                 return;
             }
@@ -78,7 +82,7 @@ class command_listener {
                         continue;
                     }
                     try {
-                        Thread.sleep(20);
+                        Thread.sleep(100);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

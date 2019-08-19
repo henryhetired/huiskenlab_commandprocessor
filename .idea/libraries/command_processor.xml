@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="command_processor">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/command_processor_jar/command_processor.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

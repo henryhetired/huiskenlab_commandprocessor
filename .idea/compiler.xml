@@ -9,5 +9,8 @@
         <module name="command_processor" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="command_processor" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
