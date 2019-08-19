@@ -47,6 +47,8 @@ class command_listener {
                     args+=" ";
                 }
                 if (current_command[0].endsWith(".ijm")){
+                    String pluginsDir = workspace;
+                    System.setProperty("plugins.dir", pluginsDir);
                     ImageJ session = new ImageJ(ImageJ.NO_SHOW);
                     Macro_Runner mr = new Macro_Runner();
                     mr.runMacroFile(workspace + current_command[0]+".ijm",args);
