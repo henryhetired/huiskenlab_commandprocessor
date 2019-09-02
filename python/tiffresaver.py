@@ -3,6 +3,7 @@ from tifffile import imread,imsave
 import os
 from threading import Thread
 from queue import Queue
+from tqdm import tqdm
 import socket
 queuesize = 10
 start_port = 40000
@@ -27,11 +28,30 @@ def file_writing_worker(zsize,ysize,xsize,filename,port):
         to_read = buffersize - len(data)
         data += connection.recv(
             4096 if to_read > 4096 else to_read)
-    # data = connection.recv(buffersize)
     print("data received")
     with open(filename,'wb') as f:
         f.write(data)
+    connection.close()
     return
+def file_writing_worker_multi(zsize,ysize,xsize,filename,port):
+    connection,_ = socks[port-start_port].accept()
+    print("connection made")
+    dataqueue = Queue()
+    for i in tqdm(range(zsize)):
+        fragments = []
+        while True: 
+            chunk = connection.recv(4086)
+            if not chunk: 
+                break
+            fragments.append(chunk)
+        arr = b''.join(fragments)
+        dataqueue.put(arr)
+    with open(filename,'wb') as f:
+        while not dataqueue.empty():
+            data = dataqueue.get()
+            f.write(data)
+    return
+    
 class Worker(Thread):
     """ Thread executing tasks from a given tasks queue """
     def __init__(self, tasks):
@@ -98,7 +118,7 @@ class command_handler:
             config = message.split()
             port = port_queue.get()
             print(port)
-            self.threadpool.add_task(file_writing_worker,zsize = int(config[1]),ysize = int(config[2]),xsize = int(config[3]),filename = config[4],port = port)
+            self.threadpool.add_task(file_writing_worker_multi,zsize = int(config[1]),ysize = int(config[2]),xsize = int(config[3]),filename = config[4],port = port)
             connection.send(("Connect to %d\n" % port).encode())
         
 
