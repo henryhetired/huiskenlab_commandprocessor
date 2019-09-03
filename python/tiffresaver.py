@@ -5,6 +5,7 @@ from threading import Thread
 from queue import Queue
 from tqdm import tqdm
 import socket
+import time
 queuesize = 10
 start_port = 40000
 ip = 'localhost'
@@ -36,20 +37,20 @@ def file_writing_worker(zsize,ysize,xsize,filename,port):
 def file_writing_worker_multi(zsize,ysize,xsize,filename,port):
     connection,_ = socks[port-start_port].accept()
     print("connection made")
-    dataqueue = Queue()
+    start = time.clock()
+    chunksize = xsize*ysize*2
+    arr = bytearray(chunksize)
+    mid = time.clock()
+    print("Buffer allocation took: %f seconds" %(mid-start))
+    # with open(filename,'wb') as f:
     for i in tqdm(range(zsize)):
-        fragments = []
-        while True: 
-            chunk = connection.recv(4086)
-            if not chunk: 
-                break
-            fragments.append(chunk)
-        arr = b''.join(fragments)
-        dataqueue.put(arr)
-    with open(filename,'wb') as f:
-        while not dataqueue.empty():
-            data = dataqueue.get()
-            f.write(data)
+        pos = 0
+        while pos<chunksize: 
+            arr[pos:pos+4096] = connection.recv(4096)
+            pos+=4096
+            # f.write(arr)
+    end = time.clock()
+    print("Writing data took: %f seconds" % (end-start))
     return
     
 class Worker(Thread):
@@ -123,7 +124,7 @@ class command_handler:
         
 
 if __name__== "__main__":
-    ch = command_handler('localhost',20000)
+    ch = command_handler('127.0.0.1',20000)
     ch.listener_start()
  #   def resave_data(data,shape=(500,2048,2048),filename = ""):
         # if len(data)!=shape[0]*shape[1]*shape[2]:
