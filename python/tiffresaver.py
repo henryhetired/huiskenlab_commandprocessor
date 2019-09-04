@@ -6,9 +6,10 @@ from queue import Queue
 from tqdm import tqdm
 import socket
 import time
+from concurrent.futures import ThreadPoolExecutor
 queuesize = 10
-start_port = 40000
-ip = 'localhost'
+start_port = 50400
+ip = '10.129.11.254'
 port_queue = Queue(maxsize=queuesize)
 for i in range(queuesize):
     port_queue.put(start_port+i)
@@ -40,16 +41,17 @@ def file_writing_worker_multi(zsize,ysize,xsize,filename,port):
     start = time.clock()
     chunksize = xsize*ysize*2
     arr = bytearray(chunksize)
-    mid = time.clock()
-    print("Buffer allocation took: %f seconds" %(mid-start))
-    # with open(filename,'wb') as f:
-    for i in tqdm(range(zsize)):
+    f = open(filename,'wb',buffering=0)
+    for _ in tqdm(range(zsize)):
         pos = 0
         while pos<chunksize: 
             arr[pos:pos+4096] = connection.recv(4096)
             pos+=4096
-            # f.write(arr)
+        f.write(arr)
+    print("trying to close")
+    f.close()
     end = time.clock()
+    port_queue.put(port)
     print("Writing data took: %f seconds" % (end-start))
     return
     
@@ -93,7 +95,7 @@ class ThreadPool:
 class command_handler:
     def __init__(self,ip,listenerport):
         self.command_queue = Queue()
-        self.threadpool = ThreadPool(10)
+        self.threadpool = ThreadPool(5)
         self.socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
         self.socket.bind((ip,listenerport))
         self.terminate=False
@@ -107,7 +109,7 @@ class command_handler:
     def command_parser(self,connection):
         message = connection.recv(1024)
         message = message.decode()
-        print(message)
+        # print(message)
         if "Terminate server" in message:
             connection.send("Message received\n".encode())
             connection.close()
@@ -118,14 +120,16 @@ class command_handler:
             #message format "file_writing_request zsize ysize xsize filename"
             config = message.split()
             port = port_queue.get()
-            print(port)
+            # print(port)
             self.threadpool.add_task(file_writing_worker_multi,zsize = int(config[1]),ysize = int(config[2]),xsize = int(config[3]),filename = config[4],port = port)
             connection.send(("Connect to %d\n" % port).encode())
         
 
 if __name__== "__main__":
-    ch = command_handler('127.0.0.1',20000)
+    ch = command_handler(ip,53705)
     ch.listener_start()
+    for i in range(len(socks)):
+        socks[i].close()
  #   def resave_data(data,shape=(500,2048,2048),filename = ""):
         # if len(data)!=shape[0]*shape[1]*shape[2]:
         #     print("The file size does not match the length of the array")
