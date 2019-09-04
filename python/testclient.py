@@ -11,7 +11,7 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ip = '10.129.11.254'
 server_address = (ip,53705)
 sock.connect(server_address)
-sock.sendall(("filewritingrequest 400 2048 2048 /home/local/MORGRIDGE/jhe1/test%d.raw"%i).encode())
+sock.sendall(("filewritingrequest 400 2048 2048 /mnt/smb/Henry-SPIM/testpython.raw").encode())
 msg = sock.recv(1024)
 port = int(msg.decode().split()[2])
 sock.close()

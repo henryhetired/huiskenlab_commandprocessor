@@ -10,6 +10,7 @@ from concurrent.futures import ThreadPoolExecutor
 queuesize = 10
 start_port = 50400
 ip = '10.129.11.254'
+# ip = 'localhost'
 port_queue = Queue(maxsize=queuesize)
 for i in range(queuesize):
     port_queue.put(start_port+i)
