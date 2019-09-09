@@ -9,6 +9,7 @@ data = imread("Z:/Henry speed test/test2.tif").flatten()
 print("generated")
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ip = '10.129.11.254'
+# ip = 'localhost'
 server_address = (ip,53705)
 sock.connect(server_address)
 sock.sendall(("filewritingrequest 400 2048 2048 /mnt/smb/Henry-SPIM/testpython.raw").encode())

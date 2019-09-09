@@ -1,5 +1,6 @@
 import numpy as np 
 from tifffile import imread,imsave
+import sys
 import os
 from threading import Thread
 from queue import Queue
@@ -42,15 +43,26 @@ def file_writing_worker_multi(zsize,ysize,xsize,filename,port):
     start = time.clock()
     chunksize = xsize*ysize*2
     arr = bytearray(chunksize)
-    f = open(filename,'wb',buffering=0)
-    for _ in tqdm(range(zsize)):
-        pos = 0
-        while pos<chunksize: 
-            arr[pos:pos+4096] = connection.recv(4096)
-            pos+=4096
-        f.write(arr)
-    print("trying to close")
-    f.close()
+    with open(filename,'wb+',buffering=1) as f:
+        f.seek(0)
+        err = False
+        for _ in range(zsize):
+            pos = 0
+            while pos<(chunksize-1): 
+                temp = connection.recv(4096)
+                if (len(temp)>0):
+                    arr[pos:pos+len(temp)] = temp
+                    pos+=len(temp)
+                else:
+                    print("Writing failed at byte:",pos)
+                    err = True
+                    break
+            if not err:
+                f.write(arr)
+            else:
+                break
+    temp = connection.sendall("Data received".encode())
+    connection.close()
     end = time.clock()
     port_queue.put(port)
     print("Writing data took: %f seconds" % (end-start))
@@ -115,7 +127,11 @@ class command_handler:
             connection.send("Message received\n".encode())
             connection.close()
             self.threadpool.wait_completion()
+            self.socket.shutdown(flag=socket.SHUT_RD)
             self.socket.close()
+            for ports in socks:
+                ports.shutdown(flag=socket.SHUT_RD)
+                ports.close()
             self.terminate=True
         elif "filewritingrequest" in message:
             #message format "file_writing_request zsize ysize xsize filename"
