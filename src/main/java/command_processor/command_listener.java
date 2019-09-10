@@ -150,7 +150,8 @@ public class command_listener implements Runnable{
         for (int i=0;i<zsize;i++){
             int pos = 0;
             while (pos<chunksize-1){
-                in.read(bytes);
+                int len = in.read(bytes);
+                pos+= len;
             }
             fos.write(bytes);
         }
