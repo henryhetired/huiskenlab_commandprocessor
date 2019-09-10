@@ -9,7 +9,7 @@
         <module name="command_processor" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="8">
       <module name="command_processor" target="8" />
     </bytecodeTargetLevel>
   </component>

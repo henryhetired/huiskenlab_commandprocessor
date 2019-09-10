@@ -8,21 +8,15 @@
   <component name="ChangeListManager">
     <list default="true" id="484e95a0-a388-4fda-89bd-3f1c15261036" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_imagej_ij_1_51h.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/command_processor.iml" beforeDir="false" afterPath="$PROJECT_DIR$/command_processor.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/testclient.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/testclient.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/tiffresaver.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/tiffresaver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/command_processor/command_listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/command_processor/command_listener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/command_processor/command_processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/command_processor/command_processor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/command_processor/config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/command_processor/config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/command_processor/command_listener$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/command_processor/command_listener$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/command_processor/command_listener$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/command_processor/command_listener$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/command_processor/command_listener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/command_processor/command_listener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/command_processor/command_processor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/command_processor/command_processor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/command_processor/config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/command_processor/config.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/command_processor/command_listener$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/command_processor/command_listener$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/command_processor/command_listener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/command_processor/command_processor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/command_processor/config.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -37,11 +31,58 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
+            <state relative-caret-position="401">
+              <caret line="141" column="113" selection-start-line="141" selection-start-column="113" selection-end-line="141" selection-end-column="113" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="class#commands#0;class#command_listener#0" />
+                <element signature="method#commands#0;class#commands#0;class#command_listener#0" />
+                <element signature="method#command_listener#0;class#command_listener#0" />
+                <element signature="method#openServerSocket#0;class#command_listener#0" />
+                <element signature="e#1150#1521#0" />
+                <element signature="e#1321#1461#1" />
+                <element signature="e#1343#1401#0" />
+                <element signature="e#1436#1481#1" />
+                <element signature="e#1204#1291#0" />
+                <element signature="method#stop#0;class#command_listener#0" />
+                <element signature="e#1427#1471#0" />
+                <element signature="e#1492#1519#0" />
+                <element signature="e#3049#3861#0" />
+                <element signature="e#3327#3395#1" />
+                <element signature="e#3682#3851#1" />
+                <element signature="e#3703#3750#0" />
+                <element signature="e#3797#3857#0" />
+                <element signature="e#4816#4862#1" />
+                <element signature="e#2530#2574#0" />
+                <element signature="e#4903#4998#0" />
+                <element signature="e#5652#5697#0" />
+                <element signature="method#process_command#0;class#command_listener#0" />
+                <element signature="class#4841:6133" />
+                <element signature="method#run#0;class#4841:6133" />
+                <element signature="e#1622#1718#1" />
+                <element signature="e#1775#2152#1" />
+                <element signature="e#2213#2510#1" />
+                <element signature="e#2309#2384#0" />
+                <element signature="e#2424#2492#0" />
+                <element signature="method#run#0;class#command_handler#0;class#command_listener#0" />
+                <element signature="e#6851#7380#1" />
+                <element signature="e#2892#3158#0" />
+                <element signature="e#3192#3249#0" />
+                <element signature="method#run#0;class#command_listener#0" />
+                <element signature="e#7632#7700#0" />
+                <element signature="e#7887#8351#1" />
+                <element signature="e#7945#8013#0" />
+                <element signature="e#8036#8299#0" />
+                <element signature="e#8070#8176#1" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/python/tiffresaver.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1566">
+              <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -58,7 +99,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_processor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
+            <state relative-caret-position="144">
               <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -70,8 +111,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/config.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="28" column="21" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
+            <state relative-caret-position="846">
+              <caret line="47" column="53" lean-forward="true" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -82,6 +123,13 @@
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -94,8 +142,17 @@
         <option value="$PROJECT_DIR$/src/main/java/command_processor/command_processor.java" />
         <option value="$USER_HOME$/.IdeaIC2018.3/config/idea64.vmoptions" />
         <option value="$USER_HOME$/.IdeaIC2018.3/config/idea.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/command_processor/comand_parser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/command_processor/command_parser.java" />
         <option value="$PROJECT_DIR$/src/main/java/command_processor/command_listener.java" />
       </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -111,34 +168,41 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="command_processor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="command_processor" type="462c0819:PsiDirectoryNode" />
+              <item name="huiskenlab_commandprocessor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="huiskenlab_commandprocessor" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="command_processor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="command_processor" type="462c0819:PsiDirectoryNode" />
+              <item name="huiskenlab_commandprocessor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="huiskenlab_commandprocessor" type="462c0819:PsiDirectoryNode" />
+              <item name="python" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="huiskenlab_commandprocessor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="huiskenlab_commandprocessor" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="command_processor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="command_processor" type="462c0819:PsiDirectoryNode" />
+              <item name="huiskenlab_commandprocessor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="huiskenlab_commandprocessor" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="command_processor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="command_processor" type="462c0819:PsiDirectoryNode" />
+              <item name="huiskenlab_commandprocessor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="huiskenlab_commandprocessor" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="command_processor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="command_processor" type="462c0819:PsiDirectoryNode" />
+              <item name="huiskenlab_commandprocessor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="huiskenlab_commandprocessor" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -148,17 +212,15 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568132338809" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568149770199" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -197,10 +259,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="-11" width="1922" height="1092" extended-state="6" />
+    <frame x="0" y="-4" width="1920" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26040554" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26307365" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -215,7 +277,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="8" sideWeight="0.50053364" side_tool="true" visible="true" weight="0.3291536" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50053364" side_tool="true" weight="0.3291536" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3291536" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -236,26 +298,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_processor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="28" column="21" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$USER_HOME$/.IdeaIC2018.3/config/idea.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -270,12 +312,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
+    <entry file="file://$PROJECT_DIR$/config.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
+        <state relative-caret-position="180">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_processor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="846">
+          <caret line="47" column="53" lean-forward="true" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/python/tiffresaver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1566">
+          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="141" column="113" selection-start-line="141" selection-start-column="113" selection-end-line="141" selection-end-column="113" />
+          <folding>
+            <element signature="class#commands#0;class#command_listener#0" />
+            <element signature="method#commands#0;class#commands#0;class#command_listener#0" />
+            <element signature="method#command_listener#0;class#command_listener#0" />
+            <element signature="method#openServerSocket#0;class#command_listener#0" />
+            <element signature="e#1150#1521#0" />
+            <element signature="e#1321#1461#1" />
+            <element signature="e#1343#1401#0" />
+            <element signature="e#1436#1481#1" />
+            <element signature="e#1204#1291#0" />
+            <element signature="method#stop#0;class#command_listener#0" />
+            <element signature="e#1427#1471#0" />
+            <element signature="e#1492#1519#0" />
+            <element signature="e#3049#3861#0" />
+            <element signature="e#3327#3395#1" />
+            <element signature="e#3682#3851#1" />
+            <element signature="e#3703#3750#0" />
+            <element signature="e#3797#3857#0" />
+            <element signature="e#4816#4862#1" />
+            <element signature="e#2530#2574#0" />
+            <element signature="e#4903#4998#0" />
+            <element signature="e#5652#5697#0" />
+            <element signature="method#process_command#0;class#command_listener#0" />
+            <element signature="class#4841:6133" />
+            <element signature="method#run#0;class#4841:6133" />
+            <element signature="e#1622#1718#1" />
+            <element signature="e#1775#2152#1" />
+            <element signature="e#2213#2510#1" />
+            <element signature="e#2309#2384#0" />
+            <element signature="e#2424#2492#0" />
+            <element signature="method#run#0;class#command_handler#0;class#command_listener#0" />
+            <element signature="e#6851#7380#1" />
+            <element signature="e#2892#3158#0" />
+            <element signature="e#3192#3249#0" />
+            <element signature="method#run#0;class#command_listener#0" />
+            <element signature="e#7632#7700#0" />
+            <element signature="e#7887#8351#1" />
+            <element signature="e#7945#8013#0" />
+            <element signature="e#8036#8299#0" />
+            <element signature="e#8070#8176#1" />
           </folding>
         </state>
       </provider>
