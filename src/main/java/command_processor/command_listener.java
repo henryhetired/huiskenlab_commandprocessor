@@ -1,31 +1,27 @@
 package command_processor;
 import java.io.*;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
+import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 import ij.ImageJ;
 import ij.plugin.Macro_Runner;
-class command_listener {
-    private static boolean keeprunning = true;
-    private static ServerSocket server = null;
-    private static Socket client = null;
-    private String messagein = "start";
-    private String workspace = "/mnt/";
-    private static DataInputStream is;
-    private static PrintStream os;
+public class command_listener implements Runnable{
+    protected boolean isStopped= false;
+    protected ServerSocket server = null;
+    protected int ServerPort = 53705;
     private static Queue<String> commands;
-    private static ExecutorService myexecutor;
-    private static ExecutorService commandparser;
-    private static boolean initialized = false;
+    private static ExecutorService myexecutor = Executors.newFixedThreadPool(5);
+    private static ExecutorService commandparser = Executors.newFixedThreadPool(2);
     //TCP/IP server class that listen to command for processing
-
     public void init(config configin) {
         try {
-            server = new ServerSocket(configin.port);
-            workspace = configin.workspace;
+            InetAddress add = InetAddress.getByName(configin.ipadd)
+            server = new ServerSocket(configin.port,10,add);
+            String workspace = configin.workspace;
             System.out.println("Server Started");
         } catch (IOException e) {
             e.printStackTrace();

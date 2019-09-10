@@ -1,9 +1,10 @@
 This is the configuration file for the Command processor
 ------------------------------
 Workspace is the location of the macro scripts
-workspace=/mnt/isilon/Henry-SPIM/command_processor/
+workspace=/mnt/
 ------------------------------
 ***Network configurations***
 Port number is the port to listen to command for
 port=53705
+IP address=10.129.11.254
 ------------------------------

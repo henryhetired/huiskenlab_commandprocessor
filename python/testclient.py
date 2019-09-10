@@ -4,7 +4,8 @@ import os
 from threading import Thread
 from queue import Queue
 import socket
-data = imread("Z:/Henry speed test/test2.tif").flatten()
+import time
+data = imread("/mnt/smb/Henryspeedtest/test2.tif").flatten()
 #data can be any data array of length 2048x2048x400 , 2 bytes each entry
 print("generated")
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -23,8 +24,10 @@ while True:
         sock.connect(server_address)
         for i in range(400):
             sock.sendall(data[i*2048*2048:(i+1)*2048*2048])
-        sock.close()
+            # time.sleep(0.01)
         print("data sent")
+        sock.close()
+        
         break
     except ImportError:
         print("wat")

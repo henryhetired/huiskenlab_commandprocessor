@@ -18,6 +18,8 @@ for i in range(queuesize):
 socks = []
 for i in range(queuesize):
     socks.append(socket.socket(socket.AF_INET,socket.SOCK_STREAM))
+    sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    socks[i].setsockopt(socket.IPPROTO_TCP,socket.TCP_NODELAY,1)
     socks[i].bind((ip,start_port+i))
     socks[i].listen(1)
 def file_writing_worker(zsize,ysize,xsize,filename,port):
@@ -34,7 +36,7 @@ def file_writing_worker(zsize,ysize,xsize,filename,port):
             4096 if to_read > 4096 else to_read)
     print("data received")
     with open(filename,'wb') as f:
-        f.write(data)
+        f.write(data)  
     connection.close()
     return
 def file_writing_worker_multi(zsize,ysize,xsize,filename,port):
@@ -42,11 +44,12 @@ def file_writing_worker_multi(zsize,ysize,xsize,filename,port):
     print("connection made")
     start = time.clock()
     chunksize = xsize*ysize*2
-    arr = bytearray(chunksize)
     with open(filename,'wb+',buffering=1) as f:
         f.seek(0)
         err = False
-        for _ in range(zsize):
+        for _ in tqdm(range(zsize)):
+            time.sleep(0.1)
+            arr = bytearray(chunksize)
             pos = 0
             while pos<(chunksize-1): 
                 temp = connection.recv(4096)
@@ -61,7 +64,8 @@ def file_writing_worker_multi(zsize,ysize,xsize,filename,port):
                 f.write(arr)
             else:
                 break
-    temp = connection.sendall("Data received".encode())
+    print("data received")
+    # temp = connection.sendall("Data received".encode())
     connection.close()
     end = time.clock()
     port_queue.put(port)
@@ -127,10 +131,10 @@ class command_handler:
             connection.send("Message received\n".encode())
             connection.close()
             self.threadpool.wait_completion()
-            self.socket.shutdown(flag=socket.SHUT_RD)
+            # self.socket.shutdown(socket.SHUT_RD)
             self.socket.close()
             for ports in socks:
-                ports.shutdown(flag=socket.SHUT_RD)
+                # ports.shutdown(socket.SHUT_RD)
                 ports.close()
             self.terminate=True
         elif "filewritingrequest" in message:
