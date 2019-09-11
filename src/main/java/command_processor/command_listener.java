@@ -4,10 +4,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantLock;
 
 import ij.ImageJ;
@@ -22,7 +19,7 @@ public class command_listener implements Runnable{
     protected int ServerPort = 53705;
     protected int threadport_start = 50400;
     protected ReentrantLock printlock = new ReentrantLock();
-    protected BlockingQueue<commands> commands= null;
+    protected BlockingQueue<commands> commands= new ArrayBlockingQueue<commands>(50);
     private class commands{
         private String commands;
         private int port;
@@ -31,9 +28,9 @@ public class command_listener implements Runnable{
             this.port = portin;
         }
     }
-    protected BlockingQueue<Integer> ports = null;
-    private static ExecutorService commandexecutor = Executors.newFixedThreadPool(5);
-    private static ExecutorService scriptexecutor = Executors.newFixedThreadPool(5);
+    protected BlockingQueue<Integer> ports = new ArrayBlockingQueue<Integer>(50);
+    private ExecutorService commandexecutor = Executors.newFixedThreadPool(5);
+    private ExecutorService scriptexecutor = Executors.newFixedThreadPool(5);
     //TCP/IP server class that listen to command for processing
     public command_listener(config configin){
         this.config = configin;
@@ -60,6 +57,7 @@ public class command_listener implements Runnable{
         this.isStopped = true;
         try {
             this.server.close();
+            System.out.println("Listener socket closed");
         }catch (IOException e){
             throw new RuntimeException("Error closing server",e);
         }
@@ -74,6 +72,10 @@ public class command_listener implements Runnable{
             InputStream is = acceptedClient.getInputStream();
             BufferedReader d = new BufferedReader(new InputStreamReader(is));
             String messagein = d.readLine();
+            printlock.lock();
+            System.out.println("New connection");
+            System.out.println("Message receieved at "+acceptedClient.getPort()+":"+messagein);
+            printlock.unlock();
             if (messagein.startsWith("runscript")){
                 //Script command running, no need to maintain connection
                 OutputStream os = acceptedClient.getOutputStream();
@@ -81,6 +83,7 @@ public class command_listener implements Runnable{
                 os.close();
                 is.close();
                 process_script_command(messagein);
+                acceptedClient.close();
             }
             else if (messagein.startsWith("runcommand")){
                 try{
@@ -92,6 +95,7 @@ public class command_listener implements Runnable{
                     os.write(response.getBytes());
                     os.close();
                     is.close();
+                    acceptedClient.close();
                 }
                 catch (InterruptedException i){
                     i.printStackTrace();
@@ -109,24 +113,15 @@ public class command_listener implements Runnable{
         private String command;
         private String[] commandlist;
         private int port;
-        private ServerSocket socket= null;
         public command_worker(int port,String commandin){
             this.command = commandin;
             this.commandlist = command.split(" ");
             this.port = port;
-            try {
-                InetAddress add = InetAddress.getByName(config.ipadd);
-                this.socket = new ServerSocket(this.port, 10, add);
-            }
-            catch(IOException e) {
-                throw new RuntimeException(("Cannot open port" + this.port));
-            }
         }
         public void run() {
-            if (this.commandlist[1].startsWith("file_writing_request")){
+            if (this.commandlist[1].startsWith("filewritingrequest")){
                 try {
-                    writefile(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),commandlist[5],this.socket);
-                    this.socket.close();
+                    writefilefast(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),commandlist[5],this.port);
                 }
                 catch (IOException e){
                     throw new RuntimeException("Cannot close port" + this.port);
@@ -139,29 +134,50 @@ public class command_listener implements Runnable{
 
         }
     }
-    private void writefile(int zsize,int ysize,int xsize,String filename,ServerSocket socket) throws IOException{
-        Socket clientsocket = null;
+    private void writefile(int zsize,int ysize,int xsize,String filename,int port) throws IOException{
+        InetAddress add = InetAddress.getByName(config.ipadd);
+        ServerSocket socket = new ServerSocket(port, 10, add);
+        Socket clientsocket;
         clientsocket = socket.accept();
         FileOutputStream fos = new FileOutputStream(filename);
-        DataOutputStream out = new DataOutputStream(new BufferedOutputStream(clientsocket.getOutputStream()));
+//        DataOutputStream out = new DataOutputStream(new BufferedOutputStream(clientsocket.getOutputStream()));
         DataInputStream in = new DataInputStream(new BufferedInputStream(clientsocket.getInputStream()));
-        byte[] bytes = new byte[4096];
         int chunksize = 2*xsize*ysize;
+        byte[] frame = new byte[chunksize];
         for (int i=0;i<zsize;i++){
             int pos = 0;
             while (pos<chunksize-1){
-                int len = in.read(bytes);
+                int len = in.read(frame,pos,chunksize-pos);
                 pos+= len;
             }
-            fos.write(bytes);
+            fos.write(frame);
         }
         fos.close();
-        out.write("Data received".getBytes());
-        out.close();
+//        out.write("Data received".getBytes());
+//        out.close();
         in.close();
+        socket.close();
+        clientsocket.close();
+        try{
+            ports.put(port);
+        }
+        catch (InterruptedException it){
+            it.printStackTrace();
+        }
         return;
-
     }
+    private void writefilefast(int zsize,int ysize,int xsize,String filename,int port) throws IOException{
+        datagetter dg = new datagetter(this.config.ipadd,port,xsize*ysize*2,zsize);
+        dg.receiveandwrite(filename);
+        try{
+            ports.put(port);
+        }
+        catch (InterruptedException it){
+            it.printStackTrace();
+        }
+        return;
+    }
+
     public void process_script_command(final String command) {
         scriptexecutor.execute(new Runnable(){
             @Override
@@ -198,18 +214,30 @@ public class command_listener implements Runnable{
 
     class command_handler implements Runnable{
             public void run() {
-                while (!isStopped()) {
+                printlock.lock();
+                System.out.println("Command handler ready");
+                printlock.unlock();
+
+                while (true) {
                     try {
+                        if (isStopped()){
+                            break;
+                        }
                         commands current_command = commands.take();
-                        commandexecutor.execute(new command_worker(current_command.port, current_command.commands));
+                        commandexecutor.submit(new command_worker(current_command.port, current_command.commands));
                         printlock.lock();
-                        System.out.println("Command started" + current_command.commands);
+                        System.out.println("Command started:" + current_command.commands+ "@" + current_command.port);
                         printlock.unlock();
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        printlock.lock();
+                        System.out.println("Command handler interrupted");
+                        printlock.unlock();
                     }
 
                 }
+                printlock.lock();
+                System.out.println("command_handler stopped");
+                printlock.unlock();
             }
         }
     public void run(){
@@ -226,6 +254,7 @@ public class command_listener implements Runnable{
                 clientSocket = this.server.accept();
             } catch (IOException e) {
                 if(isStopped()) {
+                    System.out.println("caught");
                     System.out.println("Server Stopped.") ;
                     break;
                 }
@@ -234,7 +263,14 @@ public class command_listener implements Runnable{
             }
             command_accept(clientSocket);
         }
+        handlerthread.interrupt();
         this.commandexecutor.shutdown();
+        this.scriptexecutor.shutdown();
+        try{
+            handlerthread.join();}
+        catch (InterruptedException it){
+            it.printStackTrace();
+        }
         printlock.lock();
         System.out.println("Server Stopped.") ;
         printlock.unlock();

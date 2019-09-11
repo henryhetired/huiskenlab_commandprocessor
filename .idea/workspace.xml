@@ -7,10 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="484e95a0-a388-4fda-89bd-3f1c15261036" name="Default Changelist" comment="main">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/main_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/command_processor_jar2.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/command_processor_jar/command_processor.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/main_jar/main.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/command_processor_jar2/command_processor.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/command_processor/command_listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/command_processor/command_listener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/command_processor/command_processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/command_processor/command_processor.java" afterDir="false" />
     </list>
@@ -24,79 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="729">
-              <caret line="241" column="5" selection-start-line="241" selection-start-column="5" selection-end-line="241" selection-end-column="5" />
-              <folding>
-                <element signature="class#commands#0;class#command_listener#0" />
-                <element signature="method#commands#0;class#commands#0;class#command_listener#0" />
-                <element signature="method#command_listener#0;class#command_listener#0" />
-                <element signature="method#openServerSocket#0;class#command_listener#0" />
-                <element signature="e#1150#1521#0" />
-                <element signature="e#1321#1461#1" />
-                <element signature="e#1343#1401#0" />
-                <element signature="e#1436#1481#1" />
-                <element signature="e#1204#1291#0" />
-                <element signature="method#stop#0;class#command_listener#0" />
-                <element signature="e#1427#1471#0" />
-                <element signature="e#1492#1519#0" />
-                <element signature="e#3049#3861#0" />
-                <element signature="e#3327#3395#1" />
-                <element signature="e#3682#3851#1" />
-                <element signature="e#3703#3750#0" />
-                <element signature="e#3797#3857#0" />
-                <element signature="e#4816#4862#1" />
-                <element signature="e#2530#2574#0" />
-                <element signature="e#4903#4998#0" />
-                <element signature="e#5652#5697#0" />
-                <element signature="method#process_command#0;class#command_listener#0" />
-                <element signature="class#4841:6133" />
-                <element signature="method#run#0;class#4841:6133" />
-                <element signature="e#1622#1718#1" />
-                <element signature="e#1775#2152#1" />
-                <element signature="e#2213#2510#1" />
-                <element signature="e#2309#2384#0" />
-                <element signature="e#2424#2492#0" />
-                <element signature="method#run#0;class#command_handler#0;class#command_listener#0" />
-                <element signature="e#6851#7380#1" />
-                <element signature="e#2892#3158#0" />
-                <element signature="e#3192#3249#0" />
-                <element signature="method#run#0;class#command_listener#0" />
-                <element signature="e#7632#7700#0" />
-                <element signature="e#7887#8351#1" />
-                <element signature="e#7945#8013#0" />
-                <element signature="e#8036#8299#0" />
-                <element signature="e#8070#8176#1" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/python/tiffresaver.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1566">
-              <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.IdeaIC2018.3/config/idea64.vmoptions">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_processor.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/datagetter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="518">
+              <caret line="57" column="20" lean-forward="true" selection-start-line="57" selection-start-column="20" selection-end-line="57" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,17 +37,27 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/config.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="846">
-              <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
+            <state relative-caret-position="240">
+              <caret line="168" column="30" selection-start-line="168" selection-start-column="17" selection-end-line="168" selection-end-column="30" />
+              <folding>
+                <element signature="e#729#739#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.txt">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_processor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -126,6 +68,24 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>server Stopped</find>
+      <find>isstopped</find>
+      <find>command_han</find>
+      <find>command_handl</find>
+      <find>execu</find>
+      <find>command started</find>
+      <find>write</find>
+      <find>writef</find>
+      <find>ports.</find>
+      <find>writefil</find>
+      <find>writefile</find>
+      <find>WRITEFILE</find>
+      <find>connect to</find>
+      <find>writefilefast</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -139,8 +99,9 @@
         <option value="$USER_HOME$/.IdeaIC2018.3/config/idea.properties" />
         <option value="$PROJECT_DIR$/src/main/java/command_processor/comand_parser.java" />
         <option value="$PROJECT_DIR$/src/main/java/command_processor/command_parser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/command_processor/command_listener.java" />
         <option value="$PROJECT_DIR$/src/main/java/command_processor/command_processor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/command_processor/command_listener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/command_processor/datagetter.java" />
       </list>
     </option>
   </component>
@@ -152,8 +113,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1969" />
     <option name="y" value="-4" />
-    <option name="width" value="1920" />
+    <option name="width" value="1871" />
     <option name="height" value="1084" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -217,7 +179,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568150588555" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568234218088" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -261,10 +223,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-4" width="1920" height="1084" extended-state="6" />
+    <frame x="1969" y="-4" width="1871" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26307365" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27013698" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -273,8 +235,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4994664" weight="0.3291536" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4994664" visible="true" weight="0.3291536" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.276907" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -307,13 +269,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.IdeaIC2018.3/config/idea64.vmoptions">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -334,6 +289,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/command_processor.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/.IdeaIC2018.3/config/idea64.vmoptions">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/python/tiffresaver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1566">
@@ -341,58 +306,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_processor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="729">
-          <caret line="241" column="5" selection-start-line="241" selection-start-column="5" selection-end-line="241" selection-end-column="5" />
+        <state relative-caret-position="270">
+          <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
           <folding>
-            <element signature="class#commands#0;class#command_listener#0" />
-            <element signature="method#commands#0;class#commands#0;class#command_listener#0" />
-            <element signature="method#command_listener#0;class#command_listener#0" />
-            <element signature="method#openServerSocket#0;class#command_listener#0" />
-            <element signature="e#1150#1521#0" />
-            <element signature="e#1321#1461#1" />
-            <element signature="e#1343#1401#0" />
-            <element signature="e#1436#1481#1" />
-            <element signature="e#1204#1291#0" />
-            <element signature="method#stop#0;class#command_listener#0" />
-            <element signature="e#1427#1471#0" />
-            <element signature="e#1492#1519#0" />
-            <element signature="e#3049#3861#0" />
-            <element signature="e#3327#3395#1" />
-            <element signature="e#3682#3851#1" />
-            <element signature="e#3703#3750#0" />
-            <element signature="e#3797#3857#0" />
-            <element signature="e#4816#4862#1" />
-            <element signature="e#2530#2574#0" />
-            <element signature="e#4903#4998#0" />
-            <element signature="e#5652#5697#0" />
-            <element signature="method#process_command#0;class#command_listener#0" />
-            <element signature="class#4841:6133" />
-            <element signature="method#run#0;class#4841:6133" />
-            <element signature="e#1622#1718#1" />
-            <element signature="e#1775#2152#1" />
-            <element signature="e#2213#2510#1" />
-            <element signature="e#2309#2384#0" />
-            <element signature="e#2424#2492#0" />
-            <element signature="method#run#0;class#command_handler#0;class#command_listener#0" />
-            <element signature="e#6851#7380#1" />
-            <element signature="e#2892#3158#0" />
-            <element signature="e#3192#3249#0" />
-            <element signature="method#run#0;class#command_listener#0" />
-            <element signature="e#7632#7700#0" />
-            <element signature="e#7887#8351#1" />
-            <element signature="e#7945#8013#0" />
-            <element signature="e#8036#8299#0" />
-            <element signature="e#8070#8176#1" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_processor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="240">
+          <caret line="168" column="30" selection-start-line="168" selection-start-column="17" selection-end-line="168" selection-end-column="30" />
+          <folding>
+            <element signature="e#729#739#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/datagetter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="57" column="20" lean-forward="true" selection-start-line="57" selection-start-column="20" selection-end-line="57" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -409,7 +346,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.29977876" />
                 <option value="0.5" />
               </list>
             </option>
