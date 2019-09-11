@@ -25,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/datagetter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
+            <state relative-caret-position="464">
+              <caret line="54" column="25" lean-forward="true" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -37,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="171" column="12" lean-forward="true" selection-start-line="171" selection-start-column="12" selection-end-line="171" selection-end-column="12" />
+            <state relative-caret-position="186">
+              <caret line="123" column="30" selection-start-line="123" selection-start-column="30" selection-end-line="123" selection-end-column="30" />
               <folding>
                 <element signature="e#729#739#0" expanded="true" />
               </folding>
@@ -82,10 +82,10 @@
       <find>writef</find>
       <find>ports.</find>
       <find>writefil</find>
-      <find>writefile</find>
       <find>WRITEFILE</find>
       <find>connect to</find>
       <find>writefilefast</find>
+      <find>writefile</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -100,9 +100,9 @@
         <option value="$USER_HOME$/.IdeaIC2018.3/config/idea.properties" />
         <option value="$PROJECT_DIR$/src/main/java/command_processor/comand_parser.java" />
         <option value="$PROJECT_DIR$/src/main/java/command_processor/command_parser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/command_processor/command_listener.java" />
         <option value="$PROJECT_DIR$/src/main/java/command_processor/command_processor.java" />
         <option value="$PROJECT_DIR$/src/main/java/command_processor/datagetter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/command_processor/command_listener.java" />
       </list>
     </option>
   </component>
@@ -180,7 +180,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568236446529" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568236782855" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -307,12 +307,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/datagetter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="171" column="12" lean-forward="true" selection-start-line="171" selection-start-column="12" selection-end-line="171" selection-end-column="12" />
+        <state relative-caret-position="464">
+          <caret line="54" column="25" lean-forward="true" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
           <folding>
-            <element signature="e#729#739#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -327,12 +327,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/datagetter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
+        <state relative-caret-position="186">
+          <caret line="123" column="30" selection-start-line="123" selection-start-column="30" selection-end-line="123" selection-end-column="30" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#729#739#0" expanded="true" />
           </folding>
         </state>
       </provider>
