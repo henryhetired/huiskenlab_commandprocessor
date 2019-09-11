@@ -45,8 +45,8 @@ public class datagetter {
         SocketChannel chan = chanserv.accept();
         buf.limit(0);
         byte[] msg = new byte[4096];
-        for (int i=0;i<numframe*framesize/4096;i++){
-            System.out.println(i);
+        long it = (long)numframe*(long)framesize;
+        for (int i=0;i<it/(long)4096;i++){
             ensure(4096,chan);
             buf.get(msg,0,4096);
             fos.write(msg);

@@ -1,0 +1,39 @@
+import numpy as np 
+from tifffile import imread,imsave
+import os
+from threading import Thread
+from queue import Queue
+import socket
+import time
+data = imread("/home/henryhe/Documents/test2.tif").flatten()
+# data = bytearray(os.urandom(2048*2048*5*2))
+#data can be any data array of length 2048x2048x400 , 2 bytes each entry
+print("generated")
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# # ip = '10.129.11.254'
+ip = '127.0.0.1'
+server_address = (ip,53705)
+sock.connect(server_address)
+sock.sendall(("runcommand filewritingrequest 400 2048 2048 /home/henryhe/Documents/testpython2.raw\n").encode())
+msg = sock.recv(1024)
+print(msg.decode().split())
+port = int(msg.decode().split()[2])
+sock.shutdown(socket.SHUT_RD)
+sock.close()
+server_address = (ip,port)
+time.sleep(1)
+while True:
+    try:
+
+        sock2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock2.connect(server_address)
+        for i in range(400):
+            sock2.sendall(data[i*2048*2048:(i+1)*2048*2048])
+            # time.sleep(0.01)
+        print("data sent")
+        sock2.close()
+        
+        break
+    except ImportError:
+        print("wat")
+    
