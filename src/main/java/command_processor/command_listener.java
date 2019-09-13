@@ -121,7 +121,7 @@ public class command_listener implements Runnable{
         public void run() {
             if (this.commandlist[1].startsWith("filewritingrequest")){
                 try {
-                    writefilelargebuffer(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),commandlist[5],this.port);
+                    writefile(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),commandlist[5],this.port);
                 }
                 catch (IOException e){
                     throw new RuntimeException("Cannot close port" + this.port);
@@ -144,6 +144,7 @@ public class command_listener implements Runnable{
         DataInputStream in = new DataInputStream(new BufferedInputStream(clientsocket.getInputStream()));
         int chunksize = 2*xsize*ysize;
         byte[] frame = new byte[chunksize];
+        long t0 = System.currentTimeMillis();
         for (int i=0;i<zsize;i++){
             int pos = 0;
             while (pos<chunksize-1){
@@ -155,6 +156,8 @@ public class command_listener implements Runnable{
         fos.close();
 //        out.write("Data received".getBytes());
 //        out.close();
+        long t1 = System.currentTimeMillis();
+        System.out.printf("Data transfer speed: %f MB/s\n", (long)zsize*(long)xsize*(long)ysize*2d/(double)(t1-t0)/1000d/1024d/1024d);
         in.close();
         socket.close();
         clientsocket.close();
