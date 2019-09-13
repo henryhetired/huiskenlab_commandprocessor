@@ -21,15 +21,17 @@ public class datagetter {
     private int numframe = 500;
     private static void ensure (int len, ByteChannel chan) throws IOException
     {
-        if (buf.remaining () < len) {
+        if (buf.position() > buf.capacity () - len) {
             buf.compact ();
             buf.flip ();
-            do {
-                buf.position (buf.limit ());
-                buf.limit (buf.capacity ());
-                chan.read (buf);
-                buf.flip ();
-            } while (buf.remaining () < len && buf.limit()!=buf.capacity());
+        }
+        while (buf.remaining () < len && buf.limit()!=buf.capacity()) {
+            int oldpos = buf.position ();
+            buf.position (buf.limit ());
+            buf.limit (buf.capacity ());
+            chan.read (buf);
+            buf.limit (buf.position ());
+            buf.position (oldpos);
         }
     }
     public datagetter(String hostname, int port,int framesize,int numframe){
