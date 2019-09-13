@@ -44,12 +44,12 @@ public class datagetter {
         chanserv.socket().bind(new InetSocketAddress(hostname,this.port));
         SocketChannel chan = chanserv.accept();
         buf.limit(0);
-        byte[] msg = new byte[framesize];
+        byte[] msg = new byte[1024];
         long it = (long)numframe*(long)framesize;
         for (int i=0;i<numframe;i++){
             ensure(framesize,chan);
             buf.get(msg,0,framesize);
-            fos.write(msg);
+//            fos.write(msg);
         }
         chan.close();
         chanserv.close();

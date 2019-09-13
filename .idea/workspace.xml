@@ -9,11 +9,7 @@
     <list default="true" id="484e95a0-a388-4fda-89bd-3f1c15261036" name="Default Changelist" comment="main">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/command_processor_jar/command_processor.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/command_processor_jar/command_processor.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/command_processor/command_listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/command_processor/command_listener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/command_processor/datagetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/command_processor/datagetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/command_processor/command_listener$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/command_processor/command_listener$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/command_processor/command_listener$command_handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/command_processor/command_listener$command_handler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/command_processor/command_listener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/command_processor/command_listener.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -29,7 +25,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/datagetter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="599">
-              <caret line="46" column="39" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
+              <caret line="46" column="34" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -40,8 +36,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="633">
-              <caret line="151" column="26" lean-forward="true" selection-start-line="151" selection-start-column="26" selection-end-line="151" selection-end-column="26" />
+            <state relative-caret-position="669">
+              <caret line="153" column="29" lean-forward="true" selection-start-line="153" selection-start-column="29" selection-end-line="153" selection-end-column="29" />
               <folding>
                 <element signature="e#729#739#0" expanded="true" />
               </folding>
@@ -180,7 +176,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568405223516" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568405417177" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -319,8 +315,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="633">
-          <caret line="151" column="26" lean-forward="true" selection-start-line="151" selection-start-column="26" selection-end-line="151" selection-end-column="26" />
+        <state relative-caret-position="669">
+          <caret line="153" column="29" lean-forward="true" selection-start-line="153" selection-start-column="29" selection-end-line="153" selection-end-column="29" />
           <folding>
             <element signature="e#729#739#0" expanded="true" />
           </folding>
@@ -330,7 +326,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/datagetter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="599">
-          <caret line="46" column="39" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
+          <caret line="46" column="34" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
