@@ -157,6 +157,7 @@ public class command_listener implements Runnable{
 //        out.write("Data received".getBytes());
 //        out.close();
         long t1 = System.currentTimeMillis();
+        System.out.println((long)zsize*(long)xsize*(long)ysize*2d);
         System.out.printf("Data transfer speed: %f MB/s\n", (long)zsize*(long)xsize*(long)ysize*2d/(double)(t1-t0)/1000d/1024d/1024d);
         in.close();
         socket.close();
