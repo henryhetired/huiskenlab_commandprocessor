@@ -50,7 +50,7 @@ public class datagetter {
         for (int i=0;i<numframe;i++){
             ensure(framesize,chan);
             buf.get(msg,0,framesize);
-//            fos.write(msg);
+            fos.write(msg);
         }
         chanserv.close();
 
