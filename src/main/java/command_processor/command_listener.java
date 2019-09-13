@@ -139,7 +139,7 @@ public class command_listener implements Runnable{
         ServerSocket socket = new ServerSocket(port, 10, add);
         Socket clientsocket;
         clientsocket = socket.accept();
-        FileOutputStream fos = new FileOutputStream(filename);
+//        FileOutputStream fos = new FileOutputStream(filename);
 //        DataOutputStream out = new DataOutputStream(new BufferedOutputStream(clientsocket.getOutputStream()));
         DataInputStream in = new DataInputStream(new BufferedInputStream(clientsocket.getInputStream()));
         int chunksize = 2*xsize*ysize;
@@ -150,9 +150,9 @@ public class command_listener implements Runnable{
                 int len = in.read(frame,pos,chunksize-pos);
                 pos+= len;
             }
-            fos.write(frame);
+//            fos.write(frame);
         }
-        fos.close();
+//        fos.close();
 //        out.write("Data received".getBytes());
 //        out.close();
         in.close();
