@@ -142,14 +142,14 @@ public class command_listener implements Runnable{
         FileOutputStream fos = new FileOutputStream(filename);
 //        DataOutputStream out = new DataOutputStream(new BufferedOutputStream(clientsocket.getOutputStream()));
         DataInputStream in = new DataInputStream(new BufferedInputStream(clientsocket.getInputStream()));
-        int buffer_framecount = 10; // Read 10 frames before writing out
-        int chunksize = 2*xsize*ysize*10;
+        int buffer_framecount = 10; // Read x frames before writing out
+        int chunksize = 2*xsize*ysize*buffer_framecount;
         byte[] read_frame = new byte[chunksize];
         long t0 = System.currentTimeMillis();
         int fullit = zsize/buffer_framecount;
         int residual = zsize - fullit*buffer_framecount;
         byte[] residual_frame = new byte[2*xsize*ysize*residual];
-        for (int i=0;i<fullit;i+=buffer_framecount){
+        for (int i=0;i<zsize;i+=buffer_framecount){
             int pos = 0;
             while (pos<chunksize-1){
                 int len = in.read(read_frame,pos,chunksize-pos);
