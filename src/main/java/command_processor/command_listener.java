@@ -142,33 +142,25 @@ public class command_listener implements Runnable{
         FileOutputStream fos = new FileOutputStream(filename);
 //        DataOutputStream out = new DataOutputStream(new BufferedOutputStream(clientsocket.getOutputStream()));
         DataInputStream in = new DataInputStream(new BufferedInputStream(clientsocket.getInputStream()));
-        int buffer_framecount = 10; // Read x frames before writing out
-        int chunksize = 2*xsize*ysize*buffer_framecount;
-        byte[] read_frame = new byte[chunksize];
+        int chunksize = 2*xsize*ysize;
+        byte[] frame = new byte[chunksize];
         long t0 = System.currentTimeMillis();
-        int fullit = zsize/buffer_framecount;
-        int residual = zsize - fullit*buffer_framecount;
-        byte[] residual_frame = new byte[2*xsize*ysize*residual];
-        for (int i=0;i<zsize;i+=buffer_framecount){
+        for (int i=0;i<zsize;i++){
             int pos = 0;
             while (pos<chunksize-1){
-                int len = in.read(read_frame,pos,chunksize-pos);
+                int len = in.read(frame,pos,chunksize-pos);
                 pos+= len;
             }
-            fos.write(read_frame);
+            fos.write(frame);
         }
-        int pos = 0;
-        while (pos<residual_frame.length-1){
-            int len = in.read(residual_frame,pos,residual_frame.length - pos);
-            pos+= len;
-        }
-        fos.write(residual_frame);
         fos.close();
 //        out.write("Data received".getBytes());
 //        out.close();
         long t1 = System.currentTimeMillis();
+        printlock.lock();
         System.out.println((long)zsize*(long)xsize*(long)ysize*2d/(double)(t1-t0));
         System.out.printf("Data transfer speed: %f MB/s\n", (long)zsize*(long)xsize*(long)ysize*2d/((double)(t1-t0)/1000d)/1024d/1024d);
+        printlock.unlock();
         in.close();
         socket.close();
         clientsocket.close();
