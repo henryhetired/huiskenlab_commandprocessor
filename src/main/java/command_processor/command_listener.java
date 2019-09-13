@@ -151,7 +151,7 @@ public class command_listener implements Runnable{
                 int len = in.read(frame,pos,chunksize-pos);
                 pos+= len;
             }
-            fos.write(frame);
+//            fos.write(frame);
         }
         fos.close();
 //        out.write("Data received".getBytes());
