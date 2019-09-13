@@ -52,7 +52,6 @@ public class datagetter {
             buf.get(msg,0,framesize);
 //            fos.write(msg);
         }
-        chan.close();
         chanserv.close();
 
         fos.close();
