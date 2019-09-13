@@ -14,7 +14,7 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 
 public class datagetter {
-    private static ByteBuffer buf = ByteBuffer.allocateDirect (1024*512);
+    private static ByteBuffer buf;
     private String hostname = null;
     private int port = 0;
     private int framesize = 2048*2048;
@@ -29,7 +29,7 @@ public class datagetter {
                 buf.limit (buf.capacity ());
                 chan.read (buf);
                 buf.flip ();
-            } while (buf.remaining () < len);
+            } while (buf.remaining () < len && buf.limit()!=buf.capacity());
         }
     }
     public datagetter(String hostname, int port,int framesize,int numframe){
@@ -39,12 +39,13 @@ public class datagetter {
         this.numframe = numframe;
     }
     public void receiveandwrite(String filename) throws IOException{
+        buf = ByteBuffer.allocateDirect(framesize);
         FileOutputStream fos = new FileOutputStream(filename);
         ServerSocketChannel chanserv = ServerSocketChannel.open();
         chanserv.socket().bind(new InetSocketAddress(hostname,this.port));
         SocketChannel chan = chanserv.accept();
         buf.limit(0);
-        byte[] msg = new byte[1024];
+        byte[] msg = new byte[framesize];
         long it = (long)numframe*(long)framesize;
         for (int i=0;i<numframe;i++){
             ensure(framesize,chan);
