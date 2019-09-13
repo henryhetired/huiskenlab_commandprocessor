@@ -121,7 +121,7 @@ public class command_listener implements Runnable{
         public void run() {
             if (this.commandlist[1].startsWith("filewritingrequest")){
                 try {
-                    writefile(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),commandlist[5],this.port);
+                    writefilelargebuffer(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),commandlist[5],this.port);
                 }
                 catch (IOException e){
                     throw new RuntimeException("Cannot close port" + this.port);
@@ -139,7 +139,7 @@ public class command_listener implements Runnable{
         ServerSocket socket = new ServerSocket(port, 10, add);
         Socket clientsocket;
         clientsocket = socket.accept();
-//        FileOutputStream fos = new FileOutputStream(filename);
+        FileOutputStream fos = new FileOutputStream(filename);
 //        DataOutputStream out = new DataOutputStream(new BufferedOutputStream(clientsocket.getOutputStream()));
         DataInputStream in = new DataInputStream(new BufferedInputStream(clientsocket.getInputStream()));
         int chunksize = 2*xsize*ysize;
@@ -150,9 +150,49 @@ public class command_listener implements Runnable{
                 int len = in.read(frame,pos,chunksize-pos);
                 pos+= len;
             }
-//            fos.write(frame);
+            fos.write(frame);
         }
-//        fos.close();
+        fos.close();
+//        out.write("Data received".getBytes());
+//        out.close();
+        in.close();
+        socket.close();
+        clientsocket.close();
+        try{
+            ports.put(port);
+        }
+        catch (InterruptedException it){
+            it.printStackTrace();
+        }
+        return;
+    }
+    private void writefilelargebuffer(int zsize,int ysize,int xsize,String filename,int port) throws IOException{
+
+        byte[][] data = new byte[zsize][zsize*ysize*2];
+        InetAddress add = InetAddress.getByName(config.ipadd);
+        ServerSocket socket = new ServerSocket(port, 10, add);
+        Socket clientsocket;
+        clientsocket = socket.accept();
+        long t0 = System.currentTimeMillis();
+        FileOutputStream fos = new FileOutputStream(filename);
+//        DataOutputStream out = new DataOutputStream(new BufferedOutputStream(clientsocket.getOutputStream()));
+        DataInputStream in = new DataInputStream(new BufferedInputStream(clientsocket.getInputStream()));
+        int chunksize = 2*xsize*ysize;
+        for (int i=0;i<zsize;i++){
+            int pos = 0;
+            while (pos<chunksize-1){
+                int len = in.read(data[i],pos,chunksize-pos);
+                pos+= len;
+            }
+        }
+        long t1 = System.currentTimeMillis();
+        System.out.printf("Data transfer speed: %f MB/s\n", (long)zsize*(long)xsize*(long)ysize*2d/(double)(t1-t0)/1000d/1024d/1024d);
+        for (int i=0;i<zsize;i++){
+            fos.write(data[i]);
+        }
+        fos.close();
+        long t2 = System.currentTimeMillis();
+        System.out.printf("Data write speed: %f MB/s\n", (long)zsize*(long)xsize*(long)ysize*2d/(double)(t2-t1)/1000d/1024d/1024d);
 //        out.write("Data received".getBytes());
 //        out.close();
         in.close();
