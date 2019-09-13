@@ -7,13 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="484e95a0-a388-4fda-89bd-3f1c15261036" name="Default Changelist" comment="main">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/command_processor_jar2.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/command_processor_jar2/command_processor.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/command_processor_jar/command_processor.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/command_processor_jar/command_processor.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/command_processor/command_listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/command_processor/command_listener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/command_processor/command_processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/command_processor/command_processor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/command_processor/datagetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/command_processor/datagetter.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -29,7 +25,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/datagetter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="905">
-              <caret line="54" column="25" lean-forward="true" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
+              <caret line="54" column="25" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -40,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="669">
-              <caret line="159" column="81" selection-start-line="159" selection-start-column="81" selection-end-line="159" selection-end-column="81" />
+            <state relative-caret-position="687">
+              <caret line="160" column="122" selection-start-line="160" selection-start-column="122" selection-end-line="160" selection-end-column="122" />
               <folding>
                 <element signature="e#729#739#0" expanded="true" />
               </folding>
@@ -53,7 +49,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_processor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="288">
-              <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+              <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -180,11 +176,11 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568400337970" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568400454486" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.29977876" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RunDashboard">
@@ -310,7 +306,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/datagetter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="905">
-          <caret line="54" column="25" lean-forward="true" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
+          <caret line="54" column="25" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -320,7 +316,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_processor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
-          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -329,8 +325,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="669">
-          <caret line="159" column="81" selection-start-line="159" selection-start-column="81" selection-end-line="159" selection-end-column="81" />
+        <state relative-caret-position="687">
+          <caret line="160" column="122" selection-start-line="160" selection-start-column="122" selection-end-line="160" selection-end-column="122" />
           <folding>
             <element signature="e#729#739#0" expanded="true" />
           </folding>
