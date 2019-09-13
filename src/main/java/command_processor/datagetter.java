@@ -46,9 +46,9 @@ public class datagetter {
         buf.limit(0);
         byte[] msg = new byte[framesize];
         long it = (long)numframe*(long)framesize;
-        for (int i=0;i<it/(long)framesize;i++){
-            ensure(4096,chan);
-            buf.get(msg,0,4096);
+        for (int i=0;i<numframe;i++){
+            ensure(framesize,chan);
+            buf.get(msg,0,framesize);
             fos.write(msg);
         }
         chan.close();
