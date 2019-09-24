@@ -14,12 +14,23 @@
             <id>imagej.public</id>
             <url>http://maven.imagej.net/content/groups/public</url>
         </repository>
+        <repository>
+            <id>ome</id>
+            <name>OME Artifactory</name>
+            <url>https://artifacts.openmicroscopy.org/artifactory/maven/</url>
+        </repository>
     </repositories>
     <dependencies>
         <dependency>
             <groupId>net.imagej</groupId>
             <artifactId>ij</artifactId>
             <version>1.52j</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/loci/bio-formats -->
+        <dependency>
+            <groupId>ome</groupId>
+            <artifactId>formats-gpl</artifactId>
+            <version>6.2.1</version>
         </dependency>
     </dependencies>
 

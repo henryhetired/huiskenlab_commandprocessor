@@ -10,7 +10,7 @@ def get_size(start_path = '.'):
                 size.append(os.path.getsize(fp))
 
     return(size)
-size = get_size("/mnt/fileserver/Henryspeedtest/09062019/e13/data")
+size = get_size("/mnt/fileserver/Henryspeedtest/09182019/e1/data")
 unique,counts = np.unique(size,return_counts=True)
 dic = dict(zip(unique,counts))
 print(np.max(size)-np.min(size))
