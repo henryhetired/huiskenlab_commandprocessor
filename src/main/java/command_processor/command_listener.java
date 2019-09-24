@@ -8,6 +8,7 @@ import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantLock;
 import ij.ImageJ;
 import ij.plugin.Macro_Runner;
+import loci.formats.FormatException;
 import loci.formats.FormatTools;
 
 
@@ -198,7 +199,11 @@ public class command_listener implements Runnable{
                 int len = in.read(frame,pos,chunksize-pos);
                 pos+= len;
             }
-            fos.savePlane(i,frame);
+            try{
+                fos.writer.saveBytes(i,frame);}
+            catch (FormatException e){
+                e.printStackTrace();
+            }
         }
         fos.cleanup();
         long t1 = System.currentTimeMillis();
