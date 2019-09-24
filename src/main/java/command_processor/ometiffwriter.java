@@ -12,6 +12,7 @@ import loci.formats.meta.IMetadata;
 import loci.formats.services.OMEXMLService;
 import ome.units.UNITS;
 import ome.units.quantity.Length;
+import ome.units.quantity.Power;
 import ome.units.unit.Unit;
 import ome.xml.model.enums.DimensionOrder;
 import ome.xml.model.enums.EnumerationException;
@@ -23,7 +24,6 @@ public class ometiffwriter {
     private Length pixelsizex;
     private Length pixelsizey;
     private Length pixelsizez;
-
     /** The name of the output file. */
     private String outputFile;
     public ometiffwriter(String outputFile) {
