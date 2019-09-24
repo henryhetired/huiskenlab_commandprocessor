@@ -121,6 +121,17 @@ public class command_listener implements Runnable{
         public void run() {
             if (this.commandlist[1].startsWith("filewritingrequest")){
                 try {
+                    writefile(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),commandlist[5],this.port);
+                }
+                catch (IOException e){
+                    throw new RuntimeException("Cannot close port" + this.port);
+                }
+                printlock.lock();
+                System.out.println("Command finished:"+command);
+                printlock.unlock();
+            }
+            else if (this.commandlist[1].startsWith("ometiffwritingrequest")){
+                try {
                     writefile_ome(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),commandlist[5],this.port);
                 }
                 catch (IOException e){
