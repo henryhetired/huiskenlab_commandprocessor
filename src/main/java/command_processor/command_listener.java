@@ -6,10 +6,10 @@ import java.net.Socket;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantLock;
-
 import ij.ImageJ;
 import ij.plugin.Macro_Runner;
-import javafx.util.Pair;
+import loci.formats.FormatTools;
+
 
 public class command_listener implements Runnable{
     protected config config = null;
@@ -121,7 +121,7 @@ public class command_listener implements Runnable{
         public void run() {
             if (this.commandlist[1].startsWith("filewritingrequest")){
                 try {
-                    writefile(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),commandlist[5],this.port);
+                    writefile_ome(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),commandlist[5],this.port);
                 }
                 catch (IOException e){
                     throw new RuntimeException("Cannot close port" + this.port);
@@ -140,7 +140,6 @@ public class command_listener implements Runnable{
         Socket clientsocket;
         clientsocket = socket.accept();
         FileOutputStream fos = new FileOutputStream(filename);
-//        DataOutputStream out = new DataOutputStream(new BufferedOutputStream(clientsocket.getOutputStream()));
         DataInputStream in = new DataInputStream(new BufferedInputStream(clientsocket.getInputStream()));
         int chunksize = 2*xsize*ysize;
         byte[] frame = new byte[chunksize];
@@ -154,8 +153,43 @@ public class command_listener implements Runnable{
             fos.write(frame);
         }
         fos.close();
-//        out.write("Data received".getBytes());
-//        out.close();
+        long t1 = System.currentTimeMillis();
+        printlock.lock();
+        System.out.println((long)zsize*(long)xsize*(long)ysize*2d/(double)(t1-t0));
+        System.out.printf("Data transfer speed: %f MB/s\n", (long)zsize*(long)xsize*(long)ysize*2d/((double)(t1-t0)/1000d)/1024d/1024d);
+        printlock.unlock();
+        in.close();
+        socket.close();
+        clientsocket.close();
+        try{
+            ports.put(port);
+        }
+        catch (InterruptedException it){
+            it.printStackTrace();
+        }
+        return;
+    }
+    private void writefile_ome(int zsize,int ysize,int xsize,String filename,int port) throws IOException{
+        InetAddress add = InetAddress.getByName(config.ipadd);
+        ServerSocket socket = new ServerSocket(port, 10, add);
+        Socket clientsocket;
+        clientsocket = socket.accept();
+        ometiffwriter fos = new ometiffwriter(filename);
+        fos.initialize(xsize,ysize,zsize,0.65f,0.65f,2f);
+        int pixelType = FormatTools.UINT16;
+        DataInputStream in = new DataInputStream(new BufferedInputStream(clientsocket.getInputStream()));
+        int chunksize = 2*xsize*ysize;
+        byte[] frame = new byte[chunksize];
+        long t0 = System.currentTimeMillis();
+        for (int i=0;i<zsize;i++){
+            int pos = 0;
+            while (pos<chunksize-1){
+                int len = in.read(frame,pos,chunksize-pos);
+                pos+= len;
+            }
+            fos.savePlane(i,frame);
+        }
+        fos.cleanup();
         long t1 = System.currentTimeMillis();
         printlock.lock();
         System.out.println((long)zsize*(long)xsize*(long)ysize*2d/(double)(t1-t0));
