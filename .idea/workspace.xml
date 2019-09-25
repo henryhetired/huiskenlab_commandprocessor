@@ -44,10 +44,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="258" column="72" selection-start-line="258" selection-start-column="72" selection-end-line="258" selection-end-column="72" />
+            <state relative-caret-position="412">
+              <caret line="165" column="39" selection-start-line="165" selection-start-column="39" selection-end-line="165" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#process_script_command#0;class#command_listener#0" />
+                <element signature="class#command_handler#0;class#command_listener#0" />
               </folding>
             </state>
           </provider>
@@ -126,8 +128,8 @@
       <find>endian</find>
       <find>writefile</find>
       <find>setpixel</find>
-      <find>length</find>
       <find>process_script_command</find>
+      <find>length</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -173,10 +175,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2151" />
+    <option name="x" value="56" />
     <option name="y" value="-4" />
-    <option name="width" value="1869" />
-    <option name="height" value="1076" />
+    <option name="width" value="1867" />
+    <option name="height" value="1068" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -244,7 +246,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569432199926" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569437892493" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -293,10 +295,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1968" y="-11" width="1873" height="1092" extended-state="6" />
+    <frame x="0" y="-4" width="1920" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27671233" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26947704" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -410,10 +412,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="258" column="72" selection-start-line="258" selection-start-column="72" selection-end-line="258" selection-end-column="72" />
+        <state relative-caret-position="412">
+          <caret line="165" column="39" selection-start-line="165" selection-start-column="39" selection-end-line="165" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#process_script_command#0;class#command_listener#0" />
+            <element signature="class#command_handler#0;class#command_listener#0" />
           </folding>
         </state>
       </provider>

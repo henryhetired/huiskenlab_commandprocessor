@@ -6,10 +6,17 @@ import java.net.Socket;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantLock;
+
+import ij.IJ;
 import ij.ImageJ;
+import ij.ImagePlus;
+import ij.io.FileInfo;
+import ij.io.FileOpener;
 import ij.plugin.Macro_Runner;
+import ij.plugin.ZProjector;
 import loci.formats.FormatException;
 import loci.formats.FormatTools;
+import org.apache.commons.io.FilenameUtils;
 
 
 public class command_listener implements Runnable{
@@ -122,7 +129,7 @@ public class command_listener implements Runnable{
         public void run() {
             if (this.commandlist[1].startsWith("filewritingrequest")){
                 try {
-                    writefile(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),commandlist[5],this.port);
+                    writefile(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),commandlist[5],this.port, Boolean.parseBoolean(commandlist[6]));
                 }
                 catch (IOException e){
                     throw new RuntimeException("Cannot close port" + this.port);
@@ -145,6 +152,25 @@ public class command_listener implements Runnable{
             //TODO:Implement other potential functions
 
         }
+    }
+    private void rawzproject(int zsize, int ysize, int xsize, String filename) throws IOException{
+        //Function to generate a MIP z projection of a given image
+        FileInfo fi = new FileInfo();
+        fi.fileName = filename;
+        fi.intelByteOrder = true;
+        fi.nImages = zsize;
+        fi.width = xsize;
+        fi.height = ysize;
+        fi.fileType = FileInfo.GRAY16_UNSIGNED;
+        FileOpener fo = new FileOpener(fi);
+        ImagePlus img = fo.open(false);
+        ZProjector projector = new ZProjector(img);
+        projector.doProjection();
+        ImagePlus projected = projector.getProjection();
+        IJ.saveAsTiff(projected, FilenameUtils.removeExtension(filename)+"_mip.tiff");
+        printlock.lock();
+        System.out.println("Zprojection generated");
+        printlock.unlock();
     }
     private void writefile(int zsize,int ysize,int xsize,String filename,int port) throws IOException{
         InetAddress add = InetAddress.getByName(config.ipadd);
@@ -180,6 +206,15 @@ public class command_listener implements Runnable{
             it.printStackTrace();
         }
         return;
+    }
+    private void writefile(int zsize,int ysize, int xsize,String filename,int port, boolean zproject) throws IOException{
+        if (zproject){
+            writefile(zsize,ysize,xsize,filename,port);
+            rawzproject(zsize,ysize,xsize,filename);
+        }
+        else{
+            writefile(zsize,ysize,xsize,filename,port);
+        }
     }
     private void writefile_ome(int zsize,int ysize,int xsize,String filename,int port) throws IOException{
         InetAddress add = InetAddress.getByName(config.ipadd);
