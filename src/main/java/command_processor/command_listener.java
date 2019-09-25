@@ -165,6 +165,7 @@ public class command_listener implements Runnable{
         FileOpener fo = new FileOpener(fi);
         ImagePlus img = fo.open(false);
         ZProjector projector = new ZProjector(img);
+        projector.setMethod(ZProjector.MAX_METHOD);
         projector.doProjection();
         ImagePlus projected = projector.getProjection();
         IJ.saveAsTiff(projected, FilenameUtils.removeExtension(filename)+"_mip.tiff");
