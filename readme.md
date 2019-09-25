@@ -1,6 +1,6 @@
 # Huisken lab command processor user guide
 ## Overview
-The huisken lab command processor runs on ```_huisken-analysis-1_``` to **headlessly** runs specific commands. Users can interface with the ```command processor server``` by sending commands via **TCP/IP**. 
+The huisken lab command processor runs on ```huisken-analysis-1``` to **headlessly** runs specific commands. Users can interface with the ```command processor server``` by sending commands via **TCP/IP**. 
 
 Since the server takes commands from **TCP/IP** connection, it is up to the user to write scripts to send the commands in sequence or in batch. 
 ## Server Installation
@@ -10,8 +10,8 @@ The ```command processor server``` is written in ```Java``` (:roll_eyes:) in ord
 There are two typical use case for the ```command processor server```:
 ### 1. You need to run commands during acquisition.
     - Stream data to the analysis machine and save to the file server.
-    - Generate __MIP__ on-the-fly.
-    - Other potentially "__Smart__" applications
+    - Generate MIP on-the-fly.
+    - Other potentially "Smart" applications
 Command structure:
 
 ```runcommand $(command) $(args)\n```
