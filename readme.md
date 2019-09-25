@@ -20,9 +20,9 @@ Command structure:
 ```$(command)``` currently implemented:
 
 * ```filewritingrequest```
-    * ```$(args)``` : zsize ysize xsize filename
-    * Ask the server to receive raw image data of size _zsize_ x _ysize_ x _xsize_ through __TCP/IP__ and write it into __raw binary__ file specified by _filename_ (__NB__: has to be relative to the server location)
-    * Example command: ```runcommand filewritingrequest 500 2048 2048 /mnt/isilon/test.raw```
+    * ```$(args)``` : zsize ysize xsize filename zproject?
+    * Ask the server to receive raw image data of size _zsize_ x _ysize_ x _xsize_ through __TCP/IP__ and write it into __raw binary__ file specified by _filename_ (__NB__: has to be relative to the server location). If a __MIP__ needs to be generated, use zprojection as a boolean flag (__true or false__).
+    * Example command: ```runcommand filewritingrequest 500 2048 2048 /mnt/isilon/test.raw true```
     * TODO: Implement flag to auto-generate __MIP__
 * ```ometiffwritingrequest``` (Experimental feature)
     * ```$(args)``` : zsize ysize xsize filename
