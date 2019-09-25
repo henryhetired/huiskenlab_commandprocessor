@@ -251,15 +251,15 @@ public class command_listener implements Runnable{
                     args+=" ";
                 }
                 args = args.trim();
-                if (current_command[0].endsWith(".ijm")){
+                if (current_command[1].endsWith(".ijm")){
                     String pluginsDir = config.workspace;
                     System.setProperty("plugins.dir", pluginsDir);
                     ImageJ session = new ImageJ(ImageJ.NO_SHOW);
                     Macro_Runner mr = new Macro_Runner();
-                    mr.runMacroFile(config.workspace + current_command[0]+".ijm",args);
+                    mr.runMacroFile(config.workspace + current_command[1]+".ijm",args);
                     session.quit();
                 }
-                else if (current_command[0].endsWith(".py")){
+                else if (current_command[1].endsWith(".py")){
                     String command = "python "+current_command[0]+" ";
                     try{
                     Process p = Runtime.getRuntime().exec(command+args);}

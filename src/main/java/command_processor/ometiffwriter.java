@@ -140,7 +140,7 @@ public class ometiffwriter {
         exception.printStackTrace();
         return null;
     }
-    
+
 
 
     /** Close the file writer. */
