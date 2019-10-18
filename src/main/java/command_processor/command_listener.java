@@ -3,6 +3,9 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantLock;
@@ -22,13 +25,18 @@ import org.apache.commons.io.FilenameUtils;
 public class command_listener implements Runnable{
     protected config config = null;
     protected boolean isStopped= false;
+    private boolean renderinginit = false;
+    private byte[][] dsframe = null;
+    private ReentrantLock renderinglock = new ReentrantLock();
+    private long lastrendered;
     protected ServerSocket server = null;
     protected Thread runningThread = null;
     protected int ServerPort = 53705;
     protected int threadport_start = 50400;
+    protected int dsfactor = 4; //downsampling factor in x-y for rendering
     protected ReentrantLock printlock = new ReentrantLock();
     protected BlockingQueue<commands> commands= new ArrayBlockingQueue<commands>(50);
-    private class commands{
+    protected class commands{
         private String commands;
         private int port;
         public commands(String commandsin,int portin){
@@ -36,13 +44,15 @@ public class command_listener implements Runnable{
             this.port = portin;
         }
     }
+    public command_listener(){};
     protected BlockingQueue<Integer> ports = new ArrayBlockingQueue<Integer>(50);
-    private ExecutorService commandexecutor = Executors.newFixedThreadPool(5);
-    private ExecutorService scriptexecutor = Executors.newFixedThreadPool(5);
+    protected ExecutorService commandexecutor = Executors.newFixedThreadPool(5);
+    protected ExecutorService scriptexecutor = Executors.newFixedThreadPool(5);
     //TCP/IP server class that listen to command for processing
     public command_listener(config configin){
         this.config = configin;
         this.ServerPort = configin.port;
+        lastrendered = System.currentTimeMillis();
     }
     public void openServerSocket() {
         try {
@@ -70,11 +80,11 @@ public class command_listener implements Runnable{
             throw new RuntimeException("Error closing server",e);
         }
     }
-    private synchronized boolean isStopped(){
+    protected synchronized boolean isStopped(){
         return this.isStopped;
     }
 
-    private void command_accept(Socket acceptedClient){
+    protected void command_accept(Socket acceptedClient){
         //Accept commands from a socket and put it in the command processing queue
         try{
             InputStream is = acceptedClient.getInputStream();
@@ -150,10 +160,43 @@ public class command_listener implements Runnable{
                 printlock.unlock();
             }
             //TODO:Implement other potential functions
-
+            else if (this.commandlist[1].startsWith("convertandrender")){
+                try {
+                    convert4rendering(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),commandlist[5],this.port);
+                }
+                catch (IOException e){
+                    throw new RuntimeException("Cannot close port" + this.port);
+                }
+                printlock.lock();
+                System.out.println("Command finished:"+command);
+                printlock.unlock();
+            }
+            else if (this.commandlist[1].startsWith("gettimestamp")){
+                try {
+                    sendtimestamp(this.port);
+                }
+                catch (IOException e){
+                    throw new RuntimeException("Cannot close port" + this.port);
+                }
+                printlock.lock();
+                System.out.println("Command finished:"+command);
+                printlock.unlock();
+            }
+            else if (this.commandlist[1].startsWith("getdata2render")){
+                try {
+                    sendrenderingdata(this.port);
+                }
+                catch (IOException e){
+                    throw new RuntimeException("Cannot close port" + this.port);
+                }
+                printlock.lock();
+                System.out.println("Command finished:"+command);
+                printlock.unlock();
+            }
         }
     }
-    private void rawzproject(int zsize, int ysize, int xsize, String filename) throws IOException{
+
+    protected void rawzproject(int zsize, int ysize, int xsize, String filename) throws IOException{
         //Function to generate a MIP z projection of a given image
         FileInfo fi = new FileInfo();
         fi.fileName = filename;
@@ -173,7 +216,19 @@ public class command_listener implements Runnable{
         System.out.println("Zprojection generated");
         printlock.unlock();
     }
-    private void writefile(int zsize,int ysize,int xsize,String filename,int port) throws IOException{
+    private void tiffzproject(int zsize, int ysize, int xsize, String filename) throws IOException{
+        //Function to generate a MIP z projection of a given image
+        ImagePlus img = new ImagePlus(filename);
+        ZProjector projector = new ZProjector(img);
+        projector.setMethod(ZProjector.MAX_METHOD);
+        projector.doProjection();
+        ImagePlus projected = projector.getProjection();
+        IJ.saveAsTiff(projected, FilenameUtils.removeExtension(filename)+"_mip.tiff");
+        printlock.lock();
+        System.out.println("Zprojection generated");
+        printlock.unlock();
+    }
+    protected void writefile(int zsize,int ysize,int xsize,String filename,int port) throws IOException{
         InetAddress add = InetAddress.getByName(config.ipadd);
         ServerSocket socket = new ServerSocket(port, 10, add);
         Socket clientsocket;
@@ -208,7 +263,7 @@ public class command_listener implements Runnable{
         }
         return;
     }
-    private void writefile(int zsize,int ysize, int xsize,String filename,int port, boolean zproject) throws IOException{
+    protected void writefile(int zsize,int ysize, int xsize,String filename,int port, boolean zproject) throws IOException{
         if (zproject){
             writefile(zsize,ysize,xsize,filename,port);
             rawzproject(zsize,ysize,xsize,filename);
@@ -217,7 +272,7 @@ public class command_listener implements Runnable{
             writefile(zsize,ysize,xsize,filename,port);
         }
     }
-    private void writefile_ome(int zsize,int ysize,int xsize,String filename,int port) throws IOException{
+    protected void writefile_ome(int zsize,int ysize,int xsize,String filename,int port) throws IOException{
         InetAddress add = InetAddress.getByName(config.ipadd);
         ServerSocket socket = new ServerSocket(port, 10, add);
         Socket clientsocket;
@@ -257,6 +312,115 @@ public class command_listener implements Runnable{
             it.printStackTrace();
         }
         return;
+    }
+    protected void convert4rendering(int zsize,int ysize,int xsize,String filepath,int port) throws IOException{
+        InetAddress add = InetAddress.getByName(config.ipadd);
+        ServerSocket socket = new ServerSocket(port, 10, add);
+        Socket clientsocket;
+        clientsocket = socket.accept();
+        DataInputStream in = new DataInputStream(new BufferedInputStream(clientsocket.getInputStream()));
+        FileOutputStream fos = new FileOutputStream(filepath+"rendering.raw");
+        int chunksize = 2*xsize*ysize;
+        byte[] frame = new byte[chunksize];
+        if (!renderinginit) {
+            dsframe = new byte[zsize][chunksize / dsfactor];
+            renderinginit = true;
+        }
+        renderinglock.lock();
+        long t0 = System.currentTimeMillis();
+        for (int i=0;i<zsize;i++){
+            int pos = 0;
+            while (pos<chunksize-1){
+                int len = in.read(frame,pos,chunksize-pos);
+                pos+= len;
+            }
+            dsframe[i] = downsamplearray(frame,dsfactor,2,xsize,ysize);
+            fos.write(dsframe[i]);
+        }
+        long t1 = System.currentTimeMillis();
+        lastrendered = t1;
+        Date date = new Date(lastrendered);
+        DateFormat simple = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z");
+        renderingjson json = new renderingjson(xsize/dsfactor,ysize/dsfactor,zsize,0.65/dsfactor,0.65/dsfactor,2,488);
+        json.updatetime(simple.format(date));
+        json.setfilelocation(filepath+"rendering.raw");
+        try{
+            json.writeJson(filepath+"rendering.json");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        renderinglock.unlock();
+        printlock.lock();
+        System.out.println((long)zsize*(long)xsize*(long)ysize*2d/(double)(t1-t0));
+        System.out.printf("Data transfer and conversion speed: %f MB/s\n", (long)zsize*(long)xsize*(long)ysize*2d/((double)(t1-t0)/1000d)/1024d/1024d);
+        printlock.unlock();
+        in.close();
+        fos.close();
+        socket.close();
+        clientsocket.close();
+        try{
+            ports.put(port);
+        }
+        catch (InterruptedException it){
+            it.printStackTrace();
+        }
+        return;
+    }
+    protected void sendtimestamp(int port) throws IOException{
+        //send the timestamp to the client
+        InetAddress add = InetAddress.getByName(config.ipadd);
+        ServerSocket socket = new ServerSocket(port, 10, add);
+        Socket clientsocket;
+        clientsocket = socket.accept();
+        OutputStream os = clientsocket.getOutputStream();
+        renderinglock.lock();
+        Date date = new Date(lastrendered);
+        DateFormat simple = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z");
+        os.write(simple.format(date).getBytes());
+        os.write("\n".getBytes());
+        renderinglock.unlock();
+        os.close();
+        try{
+            ports.put(port);
+        }
+        catch (InterruptedException it){
+            it.printStackTrace();
+        }
+    }
+    protected void sendrenderingdata(int port) throws IOException{
+        //send the data for rendering to the client
+        InetAddress add = InetAddress.getByName(config.ipadd);
+        ServerSocket socket = new ServerSocket(port, 10, add);
+        Socket clientsocket;
+        clientsocket = socket.accept();
+        OutputStream os = clientsocket.getOutputStream();
+        renderinglock.lock();
+        for (int i=0;i<dsframe.length;i++){
+            os.write(dsframe[i]);
+        }
+        renderinglock.unlock();
+        os.close();
+        try{
+            ports.put(port);
+        }
+        catch (InterruptedException it){
+            it.printStackTrace();
+        }
+    }
+    private byte[] downsamplearray(byte[] input,int dsfactor,int bitwidth,int xsize,int ysize){
+        byte[] output = new byte[input.length/dsfactor/dsfactor];
+        int newysize = ysize/dsfactor;
+        int newxsize = xsize/dsfactor;
+        int pos = 0;
+        for (int i=0;i<newysize;i++){
+            for (int j=0;j<newxsize;j++){
+                for (int k=0;k<bitwidth;k++){
+                    output[i*newxsize*bitwidth+j*bitwidth+k] = input[i*xsize*bitwidth*dsfactor+j*bitwidth*dsfactor+k];
+                }
+            }
+        }
+        return(output);
     }
     private void writefilefast(int zsize,int ysize,int xsize,String filename,int port) throws IOException{
         long t0 = System.currentTimeMillis();
