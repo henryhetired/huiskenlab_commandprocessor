@@ -4,6 +4,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.ByteBuffer;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -19,6 +20,7 @@ import ij.plugin.Macro_Runner;
 import ij.plugin.ZProjector;
 import loci.formats.FormatException;
 import loci.formats.FormatTools;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
 
@@ -29,6 +31,7 @@ public class command_listener implements Runnable{
     private byte[][] dsframe = null;
     private ReentrantLock renderinglock = new ReentrantLock();
     private long lastrendered;
+    private BlockingQueue<String> renderinglist = new ArrayBlockingQueue<String>(3);
     protected ServerSocket server = null;
     protected Thread runningThread = null;
     protected int ServerPort = 53705;
@@ -162,7 +165,7 @@ public class command_listener implements Runnable{
             //TODO:Implement other potential functions
             else if (this.commandlist[1].startsWith("convertandrender")){
                 try {
-                    convert4rendering(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),commandlist[5],this.port);
+                    convert4rendering(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),Integer.parseInt(commandlist[5]),commandlist[6],this.port,Boolean.parseBoolean(commandlist[7]));
                 }
                 catch (IOException e){
                     throw new RuntimeException("Cannot close port" + this.port);
@@ -170,6 +173,9 @@ public class command_listener implements Runnable{
                 printlock.lock();
                 System.out.println("Command finished:"+command);
                 printlock.unlock();
+            }
+            else if (this.commandlist[1].startsWith("addrender")){
+                add_to_queue(commandlist[2]);
             }
             else if (this.commandlist[1].startsWith("gettimestamp")){
                 try {
@@ -249,7 +255,6 @@ public class command_listener implements Runnable{
         fos.close();
         long t1 = System.currentTimeMillis();
         printlock.lock();
-        System.out.println((long)zsize*(long)xsize*(long)ysize*2d/(double)(t1-t0));
         System.out.printf("Data transfer speed: %f MB/s\n", (long)zsize*(long)xsize*(long)ysize*2d/((double)(t1-t0)/1000d)/1024d/1024d);
         printlock.unlock();
         in.close();
@@ -313,37 +318,75 @@ public class command_listener implements Runnable{
         }
         return;
     }
-    protected void convert4rendering(int zsize,int ysize,int xsize,String filepath,int port) throws IOException{
+    protected void convert4rendering(int zsize,int ysize,int xsize,int wavelength,String filename,int port,boolean save) throws IOException{
+        String filepath = Paths.get(filename).getParent().toString()+"/";
         InetAddress add = InetAddress.getByName(config.ipadd);
         ServerSocket socket = new ServerSocket(port, 10, add);
         Socket clientsocket;
         clientsocket = socket.accept();
         DataInputStream in = new DataInputStream(new BufferedInputStream(clientsocket.getInputStream()));
-        FileOutputStream fos = new FileOutputStream(filepath+"rendering.raw");
-        int chunksize = 2*xsize*ysize;
-        byte[] frame = new byte[chunksize];
-        if (!renderinginit) {
-            dsframe = new byte[zsize][chunksize / dsfactor];
-            renderinginit = true;
-        }
-        renderinglock.lock();
+        String renderingname = FilenameUtils.removeExtension(filename)+".rendering.raw";
+        System.out.println(renderingname);
+        FileOutputStream fos = new FileOutputStream(renderingname,true);
         long t0 = System.currentTimeMillis();
-        for (int i=0;i<zsize;i++){
-            int pos = 0;
-            while (pos<chunksize-1){
-                int len = in.read(frame,pos,chunksize-pos);
-                pos+= len;
+        if (save) {
+            FileOutputStream fosraw = new FileOutputStream(filename);
+            int chunksize = 2 * xsize * ysize;
+            byte[] frame = new byte[chunksize];
+            if (!renderinginit) {
+                dsframe = new byte[zsize][chunksize / dsfactor];
+                renderinginit = true;
             }
-            dsframe[i] = downsamplearray(frame,dsfactor,2,xsize,ysize);
-            fos.write(dsframe[i]);
+            renderinglock.lock();
+            for (int i = 0; i < zsize; i++) {
+                int pos = 0;
+                while (pos < chunksize - 1) {
+                    int len = in.read(frame, pos, chunksize - pos);
+                    pos += len;
+                }
+                fosraw.write(frame);
+                dsframe[i] = downsamplearray(frame, dsfactor, 2, xsize, ysize);
+                fos.write(dsframe[i]);
+            }
+            fosraw.close();
+        }
+        else{
+            int chunksize = 2 * xsize * ysize;
+            byte[] frame = new byte[chunksize];
+            if (!renderinginit) {
+                dsframe = new byte[zsize][chunksize / dsfactor];
+                renderinginit = true;
+            }
+            renderinglock.lock();
+            for (int i = 0; i < zsize; i++) {
+                int pos = 0;
+                while (pos < chunksize - 1) {
+                    int len = in.read(frame, pos, chunksize - pos);
+                    pos += len;
+                }
+                dsframe[i] = downsamplearray(frame, dsfactor, 2, xsize, ysize);
+                fos.write(dsframe[i]);
+            }
+        }
+        try{
+            String tempcommand = "internal addrender"+" "+renderingname;
+            commands.put(new commands(tempcommand,0)); //0 reserved for internal commands
+        }catch (InterruptedException e){
+            e.printStackTrace();
         }
         long t1 = System.currentTimeMillis();
         lastrendered = t1;
         Date date = new Date(lastrendered);
         DateFormat simple = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z");
-        renderingjson json = new renderingjson(xsize/dsfactor,ysize/dsfactor,zsize,0.65/dsfactor,0.65/dsfactor,2,488);
-        json.updatetime(simple.format(date));
-        json.setfilelocation(filepath+"rendering.raw");
+        File jsonfile = new File(filepath+"rendering.json");
+        renderingjson json = new renderingjson(xsize/dsfactor,ysize/dsfactor,zsize,0.65/dsfactor,0.65/dsfactor,2);
+        if (jsonfile.exists()){
+            json.readJson(filepath+"rendering.json");
+        }
+        System.out.println("yep");
+        json.updatetime(simple.format(date),wavelength);
+        json.setfilelocation(renderingname,wavelength);
+
         try{
             json.writeJson(filepath+"rendering.json");
         }
@@ -407,6 +450,23 @@ public class command_listener implements Runnable{
         catch (InterruptedException it){
             it.printStackTrace();
         }
+    }
+    protected void add_to_queue(String filename){
+        //Function to add a filename to the list to indicate that the file is alive on the storage, remove the oldest file
+        try {
+            if (renderinglist.size() < 3) {
+                renderinglist.put(filename);
+            } else {
+                String temp = renderinglist.take();
+                File filetobedeleted = new File(temp);
+                filetobedeleted.delete();
+                renderinglist.put(filename);
+            }
+        }
+        catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return;
     }
     private byte[] downsamplearray(byte[] input,int dsfactor,int bitwidth,int xsize,int ysize){
         byte[] output = new byte[input.length/dsfactor/dsfactor];
