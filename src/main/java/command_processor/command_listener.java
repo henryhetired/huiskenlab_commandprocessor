@@ -56,6 +56,7 @@ public class command_listener implements Runnable{
         this.config = configin;
         this.ServerPort = configin.port;
         lastrendered = System.currentTimeMillis();
+        this.renderingpath = configin.renderingpath;
     }
     public void openServerSocket() {
         try {
@@ -74,6 +75,7 @@ public class command_listener implements Runnable{
             throw new RuntimeException(("Cannot open port" + config.port));
         }
     }
+    public String renderingpath = "";
     public synchronized void stop(){
         this.isStopped = true;
         try {
@@ -142,7 +144,7 @@ public class command_listener implements Runnable{
         public void run() {
             if (this.commandlist[1].startsWith("filewritingrequest")){
                 try {
-                    writefile(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),commandlist[5],this.port, Boolean.parseBoolean(commandlist[6]));
+                    writefile(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),Integer.parseInt(commandlist[5]),commandlist[6],this.port, Boolean.parseBoolean(commandlist[7]),Boolean.parseBoolean(commandlist[8]));
                 }
                 catch (IOException e){
                     throw new RuntimeException("Cannot close port" + this.port);
@@ -163,17 +165,6 @@ public class command_listener implements Runnable{
                 printlock.unlock();
             }
             //TODO:Implement other potential functions
-            else if (this.commandlist[1].startsWith("convertandrender")){
-                try {
-                    convert4rendering(Integer.parseInt(commandlist[2]),Integer.parseInt(commandlist[3]),Integer.parseInt(commandlist[4]),Integer.parseInt(commandlist[5]),commandlist[6],this.port,Boolean.parseBoolean(commandlist[7]));
-                }
-                catch (IOException e){
-                    throw new RuntimeException("Cannot close port" + this.port);
-                }
-                printlock.lock();
-                System.out.println("Command finished:"+command);
-                printlock.unlock();
-            }
             else if (this.commandlist[1].startsWith("addrender")){
                 add_to_queue(commandlist[2]);
             }
@@ -268,13 +259,15 @@ public class command_listener implements Runnable{
         }
         return;
     }
-    protected void writefile(int zsize,int ysize, int xsize,String filename,int port, boolean zproject) throws IOException{
-        if (zproject){
+    protected void writefile(int zsize,int ysize,int xsize,int wavelength,String filename,int port,boolean zproject,boolean rendering) throws IOException{
+        if (!rendering){
             writefile(zsize,ysize,xsize,filename,port);
-            rawzproject(zsize,ysize,xsize,filename);
         }
         else{
-            writefile(zsize,ysize,xsize,filename,port);
+            convert4rendering(zsize,ysize,xsize,wavelength,filename,port);
+        }
+        if (zproject) {
+            rawzproject(zsize, ysize, xsize, filename);
         }
     }
     protected void writefile_ome(int zsize,int ysize,int xsize,String filename,int port) throws IOException{
@@ -318,58 +311,40 @@ public class command_listener implements Runnable{
         }
         return;
     }
-    protected void convert4rendering(int zsize,int ysize,int xsize,int wavelength,String filename,int port,boolean save) throws IOException{
+    protected void convert4rendering(int zsize,int ysize,int xsize,int wavelength,String filename,int port) throws IOException{
         String filepath = Paths.get(filename).getParent().toString()+"/";
         InetAddress add = InetAddress.getByName(config.ipadd);
         ServerSocket socket = new ServerSocket(port, 10, add);
         Socket clientsocket;
         clientsocket = socket.accept();
         DataInputStream in = new DataInputStream(new BufferedInputStream(clientsocket.getInputStream()));
-        String renderingname = FilenameUtils.removeExtension(filename)+".rendering.raw";
-        System.out.println(renderingname);
-        FileOutputStream fos = new FileOutputStream(renderingname,true);
+        String renderfilename = FilenameUtils.getName(filename)+".rendering";
+        String renderingsavepathname = renderingpath+ renderfilename;
+        String renderingsavepathrelative = "http://localhost#/"+renderfilename;
+        FileOutputStream fos = new FileOutputStream(renderingsavepathname,true);
         long t0 = System.currentTimeMillis();
-        if (save) {
-            FileOutputStream fosraw = new FileOutputStream(filename);
-            int chunksize = 2 * xsize * ysize;
-            byte[] frame = new byte[chunksize];
-            if (!renderinginit) {
-                dsframe = new byte[zsize][chunksize / dsfactor];
-                renderinginit = true;
-            }
-            renderinglock.lock();
-            for (int i = 0; i < zsize; i++) {
-                int pos = 0;
-                while (pos < chunksize - 1) {
-                    int len = in.read(frame, pos, chunksize - pos);
-                    pos += len;
-                }
-                fosraw.write(frame);
-                dsframe[i] = downsamplearray(frame, dsfactor, 2, xsize, ysize);
-                fos.write(dsframe[i]);
-            }
-            fosraw.close();
+        FileOutputStream fosraw = new FileOutputStream(filename);
+        int chunksize = 2 * xsize * ysize;
+        byte[] frame = new byte[chunksize];
+        if (!renderinginit) {
+            dsframe = new byte[zsize][chunksize / dsfactor];
+            renderinginit = true;
         }
-        else{
-            int chunksize = 2 * xsize * ysize;
-            byte[] frame = new byte[chunksize];
-            if (!renderinginit) {
-                dsframe = new byte[zsize][chunksize / dsfactor];
-                renderinginit = true;
+        renderinglock.lock();
+        for (int i = 0; i < zsize; i++) {
+            int pos = 0;
+            while (pos < chunksize - 1) {
+                int len = in.read(frame, pos, chunksize - pos);
+                pos += len;
             }
-            renderinglock.lock();
-            for (int i = 0; i < zsize; i++) {
-                int pos = 0;
-                while (pos < chunksize - 1) {
-                    int len = in.read(frame, pos, chunksize - pos);
-                    pos += len;
-                }
-                dsframe[i] = downsamplearray(frame, dsfactor, 2, xsize, ysize);
-                fos.write(dsframe[i]);
-            }
+            fosraw.write(frame);
+            dsframe[i] = downsamplearray(frame, dsfactor, 2, xsize, ysize);
+            fos.write(dsframe[i]);
         }
+        fosraw.close();
+
         try{
-            String tempcommand = "internal addrender"+" "+renderingname;
+            String tempcommand = "internal addrender"+" "+renderingsavepathname;
             commands.put(new commands(tempcommand,0)); //0 reserved for internal commands
         }catch (InterruptedException e){
             e.printStackTrace();
@@ -378,24 +353,22 @@ public class command_listener implements Runnable{
         lastrendered = t1;
         Date date = new Date(lastrendered);
         DateFormat simple = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z");
-        File jsonfile = new File(filepath+"rendering.json");
-        renderingjson json = new renderingjson(xsize/dsfactor,ysize/dsfactor,zsize,0.65/dsfactor,0.65/dsfactor,2);
+        File jsonfile = new File(renderingpath+"rendering.json");
+        renderingjson json = new renderingjson(xsize/dsfactor,ysize/dsfactor,zsize,0.65*dsfactor,0.65*dsfactor,2);
         if (jsonfile.exists()){
-            json.readJson(filepath+"rendering.json");
+            json.readJson(renderingpath+"rendering.json");
         }
-        System.out.println("yep");
         json.updatetime(simple.format(date),wavelength);
-        json.setfilelocation(renderingname,wavelength);
+        json.setfilelocation(renderingsavepathrelative,wavelength);
 
         try{
-            json.writeJson(filepath+"rendering.json");
+            json.writeJson(renderingpath+"rendering.json");
         }
         catch (Exception e){
             e.printStackTrace();
         }
         renderinglock.unlock();
         printlock.lock();
-        System.out.println((long)zsize*(long)xsize*(long)ysize*2d/(double)(t1-t0));
         System.out.printf("Data transfer and conversion speed: %f MB/s\n", (long)zsize*(long)xsize*(long)ysize*2d/((double)(t1-t0)/1000d)/1024d/1024d);
         printlock.unlock();
         in.close();
@@ -488,7 +461,6 @@ public class command_listener implements Runnable{
         dg.receiveandwrite(filename);
         long t1 = System.currentTimeMillis();
         printlock.lock();
-        System.out.println((long)zsize*(long)xsize*(long)ysize*2d/(double)(t1-t0));
         System.out.printf("Data transfer speed: %f MB/s\n", (long)zsize*(long)xsize*(long)ysize*2d/((double)(t1-t0)/1000d)/1024d/1024d);
         printlock.unlock();
         try{
@@ -548,7 +520,7 @@ public class command_listener implements Runnable{
                         commands current_command = commands.take();
                         commandexecutor.submit(new command_worker(current_command.port, current_command.commands));
                         printlock.lock();
-                        System.out.println("Command started:" + current_command.commands+ "@" + current_command.port);
+                        System.out.println("Command started:" + current_command.commands+ " @" + current_command.port);
                         printlock.unlock();
                     } catch (InterruptedException e) {
                         printlock.lock();

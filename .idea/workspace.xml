@@ -7,18 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="484e95a0-a388-4fda-89bd-3f1c15261036" name="Default Changelist" comment="main">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_json_json_20190722.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/testclient.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/testclient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/command_processor/command_listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/command_processor/command_listener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/command_processor/command_processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/command_processor/command_processor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/command_processor/renderingjson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/command_processor/renderingjson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/command_processor/config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/command_processor/config.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/command_processor/command_listener$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/command_processor/command_listener$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/command_processor/command_listener$command_handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/command_processor/command_listener$command_handler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/command_processor/command_listener$command_worker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/command_processor/command_listener$command_worker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/command_processor/command_listener$commands.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/command_processor/command_listener$commands.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/command_processor/command_listener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/command_processor/command_listener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/command_processor/renderingjson.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/command_processor/renderingjson.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -28,94 +24,12 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="386">
-                    <caret line="242" column="95" selection-start-line="242" selection-start-column="95" selection-end-line="242" selection-end-column="95" />
-                    <folding>
-                      <element signature="e#1039#1047#0" expanded="true" />
-                      <element signature="class#commands#0;class#command_listener#0" />
-                      <element signature="method#commands#0;class#commands#0;class#command_listener#0" />
-                      <element signature="method#command_listener#1;class#command_listener#0" />
-                      <element signature="method#openServerSocket#0;class#command_listener#0" />
-                      <element signature="e#2085#2542#0" />
-                      <element signature="e#2256#2482#1" />
-                      <element signature="e#2278#2358#0" />
-                      <element signature="e#2407#2468#0" />
-                      <element signature="e#2565#2652#0" />
-                      <element signature="method#stop#0;class#command_listener#0" />
-                      <element signature="e#2739#2841#0" />
-                      <element signature="e#2862#2939#0" />
-                      <element signature="n#!!block;n#isStopped#1;n#command_listener#0" />
-                      <element signature="method#command_accept#0;class#command_listener#0" />
-                      <element signature="e#3184#4855#0" />
-                      <element signature="e#3629#4008#1" />
-                      <element signature="e#4065#4738#1" />
-                      <element signature="e#4086#4617#0" />
-                      <element signature="e#4664#4724#0" />
-                      <element signature="e#4801#4845#1" />
-                      <element signature="e#4877#4921#0" />
-                      <element signature="class#command_worker#0;class#command_listener#0" />
-                      <element signature="method#command_worker#0;class#command_worker#0;class#command_listener#0" />
-                      <element signature="method#run#0;class#command_worker#0;class#command_listener#0" />
-                      <element signature="e#5355#5877#1" />
-                      <element signature="e#5377#5590#0" />
-                      <element signature="e#5628#5728#0" />
-                      <element signature="e#5955#6443#1" />
-                      <element signature="e#5977#6156#0" />
-                      <element signature="e#6194#6294#0" />
-                      <element signature="e#6571#7063#1" />
-                      <element signature="e#6593#6776#0" />
-                      <element signature="e#6814#6914#0" />
-                      <element signature="e#7132#7506#1" />
-                      <element signature="e#7154#7219#0" />
-                      <element signature="e#7257#7357#0" />
-                      <element signature="e#7577#7955#1" />
-                      <element signature="e#7599#7668#0" />
-                      <element signature="e#7706#7806#0" />
-                      <element signature="method#rawzproject#0;class#command_listener#0" />
-                      <element signature="method#tiffzproject#0;class#command_listener#0" />
-                      <element signature="e#10157#10259#1" />
-                      <element signature="e#10727#10767#0" />
-                      <element signature="e#10807#10852#0" />
-                      <element signature="method#writefile#1;class#command_listener#0" />
-                      <element signature="method#writefile_ome#0;class#command_listener#0" />
-                      <element signature="e#11958#12287#1" />
-                      <element signature="e#12020#12122#1" />
-                      <element signature="e#12138#12187#0" />
-                      <element signature="e#12225#12277#0" />
-                      <element signature="e#12717#12757#0" />
-                      <element signature="e#12797#12842#0" />
-                      <element signature="method#sendtimestamp#0;class#command_listener#0" />
-                      <element signature="method#sendrenderingdata#0;class#command_listener#0" />
-                      <element signature="method#downsamplearray#0;class#command_listener#0" />
-                      <element signature="method#writefilefast#0;class#command_listener#0" />
-                      <element signature="method#process_script_command#0;class#command_listener#0" />
-                      <element signature="class#command_handler#0;class#command_listener#0" />
-                      <element signature="method#run#0;class#command_handler#0;class#command_listener#0" />
-                      <element signature="method#run#0;class#command_listener#0" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/datagetter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
+            <state relative-caret-position="252">
               <caret line="14" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -124,123 +38,30 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="385" column="34" selection-start-line="385" selection-start-column="34" selection-end-line="385" selection-end-column="34" />
+            <state relative-caret-position="515">
+              <caret line="315" column="62" lean-forward="true" selection-start-line="315" selection-start-column="62" selection-end-line="315" selection-end-column="62" />
               <folding>
                 <element signature="class#commands#0;class#command_listener#0" />
                 <element signature="method#commands#0;class#commands#0;class#command_listener#0" />
-                <element signature="method#command_listener#1;class#command_listener#0" />
                 <element signature="method#openServerSocket#0;class#command_listener#0" />
-                <element signature="e#2085#2542#0" />
-                <element signature="e#2256#2482#1" />
-                <element signature="e#2278#2358#0" />
-                <element signature="e#2407#2468#0" />
-                <element signature="e#2565#2652#0" />
-                <element signature="method#stop#0;class#command_listener#0" />
-                <element signature="e#2739#2841#0" />
-                <element signature="e#2862#2939#0" />
                 <element signature="n#!!block;n#isStopped#1;n#command_listener#0" />
                 <element signature="method#command_accept#0;class#command_listener#0" />
-                <element signature="e#3184#4855#0" />
-                <element signature="e#3629#4008#1" />
-                <element signature="e#4065#4738#1" />
-                <element signature="e#4086#4617#0" />
-                <element signature="e#4664#4724#0" />
-                <element signature="e#4801#4845#1" />
-                <element signature="e#4877#4921#0" />
-                <element signature="class#command_worker#0;class#command_listener#0" />
                 <element signature="method#command_worker#0;class#command_worker#0;class#command_listener#0" />
-                <element signature="method#run#0;class#command_worker#0;class#command_listener#0" />
-                <element signature="e#5355#5877#1" />
-                <element signature="e#5377#5590#0" />
-                <element signature="e#5628#5728#0" />
-                <element signature="e#5955#6443#1" />
-                <element signature="e#5977#6156#0" />
-                <element signature="e#6194#6294#0" />
-                <element signature="e#6571#7063#1" />
-                <element signature="e#6593#6776#0" />
-                <element signature="e#6814#6914#0" />
-                <element signature="e#7319#7366#1" />
-                <element signature="e#7132#7506#1" />
-                <element signature="e#7154#7219#0" />
-                <element signature="e#7257#7357#0" />
-                <element signature="e#7577#7955#1" />
-                <element signature="e#7599#7668#0" />
-                <element signature="e#7706#7806#0" />
                 <element signature="method#rawzproject#0;class#command_listener#0" />
                 <element signature="method#tiffzproject#0;class#command_listener#0" />
                 <element signature="method#writefile#0;class#command_listener#0" />
-                <element signature="e#10095#10299#1" />
-                <element signature="e#10157#10259#1" />
-                <element signature="e#10727#10767#0" />
-                <element signature="e#10807#10852#0" />
-                <element signature="method#writefile#1;class#command_listener#0" />
-                <element signature="e#11020#11140#1" />
-                <element signature="e#11153#11220#1" />
                 <element signature="method#writefile_ome#0;class#command_listener#0" />
-                <element signature="e#11958#12287#1" />
-                <element signature="e#12020#12122#1" />
-                <element signature="e#12138#12187#0" />
-                <element signature="e#12225#12277#0" />
-                <element signature="e#12717#12757#0" />
-                <element signature="e#12797#12842#0" />
-                <element signature="e#13490#14310#1" />
-                <element signature="e#13469#13575#1" />
-                <element signature="e#13915#14230#1" />
-                <element signature="e#13747#13849#1" />
-                <element signature="e#14323#15155#1" />
-                <element signature="e#14534#14652#1" />
-                <element signature="e#14781#15145#1" />
-                <element signature="e#14856#14975#1" />
-                <element signature="e#15311#15349#0" />
-                <element signature="e#15506#15550#0" />
-                <element signature="e#14490#14534#0" />
-                <element signature="e#14963#15003#0" />
-                <element signature="e#15043#15088#0" />
                 <element signature="method#sendtimestamp#0;class#command_listener#0" />
-                <element signature="e#15772#15812#0" />
-                <element signature="e#15852#15897#0" />
                 <element signature="method#sendrenderingdata#0;class#command_listener#0" />
-                <element signature="e#16348#16393#1" />
-                <element signature="e#16457#16497#0" />
-                <element signature="e#16537#16582#0" />
                 <element signature="method#add_to_queue#0;class#command_listener#0" />
-                <element signature="e#18096#18380#0" />
-                <element signature="e#18133#18297#1" />
-                <element signature="e#18302#18346#1" />
-                <element signature="e#18419#18463#0" />
                 <element signature="method#downsamplearray#0;class#command_listener#0" />
-                <element signature="e#16886#17136#1" />
-                <element signature="e#16928#17126#1" />
-                <element signature="e#16974#17112#1" />
                 <element signature="method#writefilefast#0;class#command_listener#0" />
-                <element signature="e#17774#17814#0" />
-                <element signature="e#17854#17899#0" />
                 <element signature="method#process_script_command#0;class#command_listener#0" />
-                <element signature="class#18021:19313" />
-                <element signature="method#run#0;class#18021:19313" />
-                <element signature="e#18242#18338#1" />
-                <element signature="e#18431#18822#1" />
-                <element signature="e#18883#19180#1" />
-                <element signature="e#18979#19054#0" />
-                <element signature="e#19094#19162#0" />
                 <element signature="class#command_handler#0;class#command_listener#0" />
                 <element signature="method#run#0;class#command_handler#0;class#command_listener#0" />
-                <element signature="e#19563#20339#1" />
-                <element signature="e#19589#20104#0" />
-                <element signature="e#19631#19693#1" />
-                <element signature="e#20136#20320#0" />
-                <element signature="method#run#0;class#command_listener#0" />
-                <element signature="e#20546#20614#0" />
-                <element signature="e#20801#21315#1" />
-                <element signature="e#20859#20927#0" />
-                <element signature="e#20950#21263#0" />
-                <element signature="e#20984#21140#1" />
-                <element signature="e#21443#21479#0" />
-                <element signature="e#21519#21564#0" />
               </folding>
             </state>
           </provider>
@@ -249,12 +70,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/renderingjson.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="30" column="27" lean-forward="true" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+            <state relative-caret-position="396">
+              <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#686#687#0" expanded="true" />
-                <element signature="e#759#760#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -272,8 +91,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="162">
+              <caret line="9" column="62" lean-forward="true" selection-start-line="9" selection-start-column="62" selection-end-line="9" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -281,17 +100,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
+            <state relative-caret-position="432">
               <caret line="24" column="29" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_processor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="36" lean-forward="true" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+            <state relative-caret-position="234">
+              <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -300,7 +119,9 @@
         <entry file="file://$PROJECT_DIR$/readme.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor />
+              <first_editor relative-caret-position="468">
+                <caret line="26" column="69" selection-start-line="26" selection-start-column="69" selection-end-line="26" selection-end-column="69" />
+              </first_editor>
               <second_editor />
             </state>
           </provider>
@@ -309,8 +130,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/config.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="40" column="12" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
+            <state relative-caret-position="329">
+              <caret line="56" column="76" selection-start-line="56" selection-start-column="76" selection-end-line="56" selection-end-column="76" />
             </state>
           </provider>
         </entry>
@@ -326,10 +147,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>execu</find>
-      <find>command started</find>
-      <find>write</find>
-      <find>writef</find>
       <find>ports.</find>
       <find>WRITEFILE</find>
       <find>connect to</find>
@@ -345,7 +162,6 @@
       <find>length</find>
       <find>commandexecutor</find>
       <find>os</find>
-      <find>dsfactor</find>
       <find>outputstream</find>
       <find>command_wor</find>
       <find>downsamplearray</find>
@@ -356,6 +172,11 @@
       <find>commands.put</find>
       <find>json</find>
       <find>system.out.println</find>
+      <find>SYstem.out.println(</find>
+      <find>renderingpath</find>
+      <find>4</find>
+      <find>dsfactor</find>
+      <find>http</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -369,7 +190,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/command_processor/config.java" />
         <option value="$USER_HOME$/.IdeaIC2018.3/config/idea64.vmoptions" />
         <option value="$USER_HOME$/.IdeaIC2018.3/config/idea.properties" />
         <option value="$PROJECT_DIR$/src/main/java/command_processor/comand_parser.java" />
@@ -378,9 +198,12 @@
         <option value="$PROJECT_DIR$/src/main/java/command_processor/ometiffwriter.java" />
         <option value="$PROJECT_DIR$/src/main/java/command_processor/smart_rotation_listener.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/command_processor/command_listener.java" />
         <option value="$PROJECT_DIR$/src/main/java/command_processor/renderingjson.java" />
+        <option value="$PROJECT_DIR$/src/main/java/command_processor/config.java" />
+        <option value="$PROJECT_DIR$/config.txt" />
         <option value="$PROJECT_DIR$/src/main/java/command_processor/command_processor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/command_processor/command_listener.java" />
+        <option value="$PROJECT_DIR$/readme.md" />
       </list>
     </option>
   </component>
@@ -403,10 +226,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1" />
-    <option name="y" value="-11" />
-    <option name="width" value="1922" />
-    <option name="height" value="1092" />
+    <option name="x" value="90" />
+    <option name="y" value="-4" />
+    <option name="width" value="1920" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -416,6 +239,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -470,11 +294,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571761277995" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571862537687" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../smartrotationjava" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -523,10 +346,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="-11" width="1922" height="1092" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="-4" width="1920" height="1084" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20651014" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.21077909" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -536,7 +358,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3291536" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4994664" weight="0.3291536" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3197492" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.31870428" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -590,11 +412,18 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/smart_rotation_listener.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/datagetter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
+        <state relative-caret-position="252">
           <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="56" column="76" selection-start-line="56" selection-start-column="76" selection-end-line="56" selection-end-column="76" />
         </state>
       </provider>
     </entry>
@@ -605,171 +434,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/renderingjson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="162">
+          <caret line="9" column="62" lean-forward="true" selection-start-line="9" selection-start-column="62" selection-end-line="9" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="24" column="29" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_processor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="315" column="62" lean-forward="true" selection-start-line="315" selection-start-column="62" selection-end-line="315" selection-end-column="62" />
+          <folding>
+            <element signature="class#commands#0;class#command_listener#0" />
+            <element signature="method#commands#0;class#commands#0;class#command_listener#0" />
+            <element signature="method#openServerSocket#0;class#command_listener#0" />
+            <element signature="n#!!block;n#isStopped#1;n#command_listener#0" />
+            <element signature="method#command_accept#0;class#command_listener#0" />
+            <element signature="method#command_worker#0;class#command_worker#0;class#command_listener#0" />
+            <element signature="method#rawzproject#0;class#command_listener#0" />
+            <element signature="method#tiffzproject#0;class#command_listener#0" />
+            <element signature="method#writefile#0;class#command_listener#0" />
+            <element signature="method#writefile_ome#0;class#command_listener#0" />
+            <element signature="method#sendtimestamp#0;class#command_listener#0" />
+            <element signature="method#sendrenderingdata#0;class#command_listener#0" />
+            <element signature="method#add_to_queue#0;class#command_listener#0" />
+            <element signature="method#downsamplearray#0;class#command_listener#0" />
+            <element signature="method#writefilefast#0;class#command_listener#0" />
+            <element signature="method#process_script_command#0;class#command_listener#0" />
+            <element signature="class#command_handler#0;class#command_listener#0" />
+            <element signature="method#run#0;class#command_handler#0;class#command_listener#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/readme.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor />
+          <first_editor relative-caret-position="468">
+            <caret line="26" column="69" selection-start-line="26" selection-start-column="69" selection-end-line="26" selection-end-column="69" />
+          </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="40" column="12" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="24" column="29" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_listener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="385" column="34" selection-start-line="385" selection-start-column="34" selection-end-line="385" selection-end-column="34" />
-          <folding>
-            <element signature="class#commands#0;class#command_listener#0" />
-            <element signature="method#commands#0;class#commands#0;class#command_listener#0" />
-            <element signature="method#command_listener#1;class#command_listener#0" />
-            <element signature="method#openServerSocket#0;class#command_listener#0" />
-            <element signature="e#2085#2542#0" />
-            <element signature="e#2256#2482#1" />
-            <element signature="e#2278#2358#0" />
-            <element signature="e#2407#2468#0" />
-            <element signature="e#2565#2652#0" />
-            <element signature="method#stop#0;class#command_listener#0" />
-            <element signature="e#2739#2841#0" />
-            <element signature="e#2862#2939#0" />
-            <element signature="n#!!block;n#isStopped#1;n#command_listener#0" />
-            <element signature="method#command_accept#0;class#command_listener#0" />
-            <element signature="e#3184#4855#0" />
-            <element signature="e#3629#4008#1" />
-            <element signature="e#4065#4738#1" />
-            <element signature="e#4086#4617#0" />
-            <element signature="e#4664#4724#0" />
-            <element signature="e#4801#4845#1" />
-            <element signature="e#4877#4921#0" />
-            <element signature="class#command_worker#0;class#command_listener#0" />
-            <element signature="method#command_worker#0;class#command_worker#0;class#command_listener#0" />
-            <element signature="method#run#0;class#command_worker#0;class#command_listener#0" />
-            <element signature="e#5355#5877#1" />
-            <element signature="e#5377#5590#0" />
-            <element signature="e#5628#5728#0" />
-            <element signature="e#5955#6443#1" />
-            <element signature="e#5977#6156#0" />
-            <element signature="e#6194#6294#0" />
-            <element signature="e#6571#7063#1" />
-            <element signature="e#6593#6776#0" />
-            <element signature="e#6814#6914#0" />
-            <element signature="e#7319#7366#1" />
-            <element signature="e#7132#7506#1" />
-            <element signature="e#7154#7219#0" />
-            <element signature="e#7257#7357#0" />
-            <element signature="e#7577#7955#1" />
-            <element signature="e#7599#7668#0" />
-            <element signature="e#7706#7806#0" />
-            <element signature="method#rawzproject#0;class#command_listener#0" />
-            <element signature="method#tiffzproject#0;class#command_listener#0" />
-            <element signature="method#writefile#0;class#command_listener#0" />
-            <element signature="e#10095#10299#1" />
-            <element signature="e#10157#10259#1" />
-            <element signature="e#10727#10767#0" />
-            <element signature="e#10807#10852#0" />
-            <element signature="method#writefile#1;class#command_listener#0" />
-            <element signature="e#11020#11140#1" />
-            <element signature="e#11153#11220#1" />
-            <element signature="method#writefile_ome#0;class#command_listener#0" />
-            <element signature="e#11958#12287#1" />
-            <element signature="e#12020#12122#1" />
-            <element signature="e#12138#12187#0" />
-            <element signature="e#12225#12277#0" />
-            <element signature="e#12717#12757#0" />
-            <element signature="e#12797#12842#0" />
-            <element signature="e#13490#14310#1" />
-            <element signature="e#13469#13575#1" />
-            <element signature="e#13915#14230#1" />
-            <element signature="e#13747#13849#1" />
-            <element signature="e#14323#15155#1" />
-            <element signature="e#14534#14652#1" />
-            <element signature="e#14781#15145#1" />
-            <element signature="e#14856#14975#1" />
-            <element signature="e#15311#15349#0" />
-            <element signature="e#15506#15550#0" />
-            <element signature="e#14490#14534#0" />
-            <element signature="e#14963#15003#0" />
-            <element signature="e#15043#15088#0" />
-            <element signature="method#sendtimestamp#0;class#command_listener#0" />
-            <element signature="e#15772#15812#0" />
-            <element signature="e#15852#15897#0" />
-            <element signature="method#sendrenderingdata#0;class#command_listener#0" />
-            <element signature="e#16348#16393#1" />
-            <element signature="e#16457#16497#0" />
-            <element signature="e#16537#16582#0" />
-            <element signature="method#add_to_queue#0;class#command_listener#0" />
-            <element signature="e#18096#18380#0" />
-            <element signature="e#18133#18297#1" />
-            <element signature="e#18302#18346#1" />
-            <element signature="e#18419#18463#0" />
-            <element signature="method#downsamplearray#0;class#command_listener#0" />
-            <element signature="e#16886#17136#1" />
-            <element signature="e#16928#17126#1" />
-            <element signature="e#16974#17112#1" />
-            <element signature="method#writefilefast#0;class#command_listener#0" />
-            <element signature="e#17774#17814#0" />
-            <element signature="e#17854#17899#0" />
-            <element signature="method#process_script_command#0;class#command_listener#0" />
-            <element signature="class#18021:19313" />
-            <element signature="method#run#0;class#18021:19313" />
-            <element signature="e#18242#18338#1" />
-            <element signature="e#18431#18822#1" />
-            <element signature="e#18883#19180#1" />
-            <element signature="e#18979#19054#0" />
-            <element signature="e#19094#19162#0" />
-            <element signature="class#command_handler#0;class#command_listener#0" />
-            <element signature="method#run#0;class#command_handler#0;class#command_listener#0" />
-            <element signature="e#19563#20339#1" />
-            <element signature="e#19589#20104#0" />
-            <element signature="e#19631#19693#1" />
-            <element signature="e#20136#20320#0" />
-            <element signature="method#run#0;class#command_listener#0" />
-            <element signature="e#20546#20614#0" />
-            <element signature="e#20801#21315#1" />
-            <element signature="e#20859#20927#0" />
-            <element signature="e#20950#21263#0" />
-            <element signature="e#20984#21140#1" />
-            <element signature="e#21443#21479#0" />
-            <element signature="e#21519#21564#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/renderingjson.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="30" column="27" lean-forward="true" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#686#687#0" expanded="true" />
-            <element signature="e#759#760#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/command_processor/command_processor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="36" lean-forward="true" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
         </state>
       </provider>
     </entry>

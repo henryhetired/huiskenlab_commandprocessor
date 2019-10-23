@@ -8,6 +8,7 @@ public class config {
     //port is the port to listen for command
     public int port = 53705;
     public String ipadd = "10.129.11.254";
+    public String renderingpath = "C:\\";
     public void create(String filepath) throws IOException {
         //create a config file with the default parameters at filepath
         File fout = new File(filepath + "config.txt");
@@ -51,6 +52,9 @@ public class config {
                     }
                     else if (line.contains("IP")){
                         ipadd = line.substring(line.indexOf("=")+1);
+                    }
+                    else if (line.contains("renderingpath")){
+                        renderingpath = line.substring(line.indexOf("=")+1);
                     }
                 }
             }
